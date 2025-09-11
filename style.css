@@ -57,3 +57,13 @@ footer{text-align:center;padding:1.5rem;font-size:.65rem;letter-spacing:.1em;opa
 .topbar{position:relative;z-index:200}   /* button stays on top */
 #navDrawer{z-index:90}                  /* drawer slides UNDER */
 #circleMenu{flex-shrink:0;margin-left:auto} /* keeps right alignment */
+/* ---------- HALF-SCREEN DRAWER ---------- */
+#navDrawer{
+  width:50vw;                 /* exactly half */
+  right:0; left:auto;         /* slides from right */
+  transform:translateX(100%);/* start off-screen right */
+  padding:3rem 2rem;          /* slightly narrower */
+}
+#navDrawer.open{transform:translateX(0);}
+.topbar{position:relative;z-index:200;} /* button stays outside */
+#circleMenu{flex-shrink:0;margin-left:auto;} /* lock to right edge */
