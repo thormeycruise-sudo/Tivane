@@ -54,3 +54,21 @@ footer{text-align:center;padding:1.5rem;font-size:.65rem;letter-spacing:.1em;opa
 }
 /* FORCE BLACK HAMBURGER */
 #menuToggle span { background: var(--black) !important; }
+/* ===== ANIMATE HAMBURGER → X ===== */
+#menuToggle .bar {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--black);
+  margin: 4px 0;
+  transition: 0.3s;
+}
+#menuToggle.open .bar1 {
+  transform: rotate(-45deg) translate(-4px, 4px);
+}
+#menuToggle.open .bar2 {
+  opacity: 0;
+}
+#menuToggle.open .bar3 {
+  transform: rotate(45deg) translate(-4px, -4px);
+}
