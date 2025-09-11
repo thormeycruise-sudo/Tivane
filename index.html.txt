@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Tivane – Maison de Couture</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+
+  <style>
+    :root{--ivory:#faf8f5; --stone:#9c9c9c; --black:#1d1d1d; --gild:#c0a377;
+           --display:"Cormorant Infant",serif; --body:"Inter",sans-serif;}
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{background:var(--ivory);color:var(--black);font-family:var(--body);letter-spacing:.02em}
+
+    /* ---------- TOP BAR ---------- */
+    .topbar{display:flex;justify-content:space-between;align-items:center;padding:1.2rem 1.5rem;font-size:.75rem;text-transform:uppercase;letter-spacing:.15em}
+    .logo{font-family:var(--display);font-size:2rem;font-weight:600;letter-spacing:.05em}
+
+    /* ---------- BLACK HAMBURGER ---------- */
+    #menuToggle{display:flex;flex-direction:column;justify-content:center;align-items:center;width:24px;height:24px;cursor:pointer}
+    #menuToggle span{width:24px;height:2px;background:var(--black);margin:4px 0;transition:.3s} /* ← BLACK LINES */
+
+    #navDrawer{position:fixed;inset:0;background:var(--ivory);transform:translateX(-100%);transition:transform .4s;z-index:100;display:flex;flex-direction:column;padding:2rem}
+    #navDrawer.open{transform:translateX(0)}
+    .drawerSec{margin-bottom:2rem}
+    .drawerSec h3{font-size:.8rem;letter-spacing:.2em;margin-bottom:.8rem;text-transform:uppercase;color:var(--stone)}
+    .drawerSec a{display:block;margin:.4rem 0;font-size:.9rem}
+
+    /* ---------- HERO ---------- */
+    header{height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 1.5rem}
+    header h1{font-family:var(--display);font-size:clamp(3.5rem,10vw,8rem);font-weight:600;line-height:1;letter-spacing:-.02em}
+    header p{margin-top:1.5rem;font-size:1rem;font-weight:300;opacity:.7}
+
+    /* ---------- RUNWAY GRID ---------- */
+    section{padding:5rem 1.5rem;max-width:1400px;margin:auto}
+    .sectTitle{font-family:var(--display);font-size:2.2rem;font-weight:400;text-align:center;margin-bottom:4rem}
+    .runway-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem}
+    .card{background:#fff;position:relative;overflow:hidden}
+    .card img{width:100%;height:420px;object-fit:cover;transition:transform .6s}
+    .card:hover img{transform:scale(1.05)}
+    .card .label{position:absolute;bottom:1rem;left:1rem;background:rgba(29,29,29,.8);color:var(--ivory);padding:.4rem .8rem;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase}
+
+    /* ---------- FOOTER STRIP (ZARA STYLE) ---------- */
+    .footerStrip{display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem;padding:1rem 1.5rem;font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;border-top:1px solid #e5e5e5}
+    .footerStrip a{color:var(--stone);transition:color .3s}
+    .footerStrip a:hover{color:var(--black)}
+
+    footer{text-align:center;padding:1.5rem;font-size:.65rem;letter-spacing:.1em;opacity:.6}
+  </style>
+</head>
+
+<body>
+  <!-- ========== TOP BAR ========== -->
+  <div class="topbar">
+    <div class="logo">Tivane</div>
+    <div id="menuToggle" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+
+  <!-- ========== HAMBURGER DRAWER ---------- -->
+  <nav id="navDrawer">
+    <div class="drawerSec">
+      <h3>Menu</h3>
+      <a href="#collections">Collections</a>
+      <a href="#story">Story</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="drawerSec">
+      <h3>Men</h3>
+      <a href="men-new.html">New</a>
+      <a href="men-bestsellers.html">Best Sellers</a>
+      <a href="men-streetwear.html">Streetwear</a>
+      <a href="men-statement.html">Statement Pieces</a>
+      <a href="men-jewelry.html">Rare Jewelries</a>
+      <a href="men-sleeveless.html">Sleeveless</a>
+    </div>
+    <div class="drawerSec">
+      <h3>Women</h3>
+      <a href="women-new.html">New</a>
+      <a href="women-bestsellers.html">Best Sellers</a>
+      <a href="women-sleeveless.html">Sleeveless</a>
+      <a href="women-skirts.html">Skirts</a>
+      <a href="women-dresses.html">Dresses</a>
+      <a href="women-knitwear.html">Knitwear</a>
+    </div>
+    <div class="drawerSec">
+      <h3>Misc</h3>
+      <a href="misc-accessories.html">Accessories</a>
+      <a href="misc-footwear.html">Footwear</a>
+      <a href="misc-limited.html">Limited Editions</a>
+    </div>
+  </nav>
+
+  <!-- ========== HERO ---------- -->
+  <header>
+    <h1>Tivane</h1>
+    <p>Maison de Couture • Fall-Winter 2025</p>
+  </header>
+
+  <!-- ========== RUNWAY GRID ---------- -->
+  <section id="collections">
+    <h2 class="sectTitle">Collections</h2>
+    <div class="runway-grid">
+      <a class="card" href="obli4ous/index.html">
+        <img src="" alt="Obli4ous"><span class="label">Obli4ous</span>
+      </a>
+      <a class="card" href="collection-ii/index.html">
+        <img src="" alt="Collection II"><span class="label">Collection II</span>
+      </a>
+      <a class="card" href="collection-iii/index.html">
+        <img src="" alt="Collection III"><span class="label">Collection III</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ========== STORY ---------- -->
+  <section id="story" style="text-align:center">
+    <h2 class="sectTitle">Story</h2>
+    <p style="max-width:700px;margin:auto;font-family:var(--display);font-size:1.4rem;line-height:1.7">
+      “Every thread whispers luxury, every cut shouts individuality.”
+    </p>
+  </section>
+
+  <!-- ========== CONTACT ---------- -->
+  <section id="contact" style="text-align:center">
+    <h2 class="sectTitle">Contact</h2>
+    <a href="mailto:atelier@tivane.com" style="border-bottom:1px solid var(--gild);padding-bottom:2px;">atelier@tivane.com</a>
+  </section>
+
+  <!-- ========== FOOTER STRIP (ZARA CLONE) ---------- -->
+  <div class="footerStrip">
+    <a href="new.html">New</a>
+    <a href="bestsellers.html">Best Sellers</a>
+    <a href="knitwear.html">Knitwear</a>
+    <a href="leather.html">Leather</a>
+    <a href="coats.html">Coats</a>
+    <a href="trench.html">Trench</a>
+  </div>
+
+  <!-- ========== BOTTOM FOOTER ---------- -->
+  <footer>© 2025 Tivane – Maison de Couture</footer>
+
+  <!-- ========== JS: TOGGLE DRAWER ---------- -->
+  <script>
+    function toggleMenu(){
+      document.getElementById('navDrawer').classList.toggle('open');
+    }
+  </script>
+</body>
+</html>
