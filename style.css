@@ -52,3 +52,8 @@ section{padding:5rem 1.5rem;max-width:1400px;margin:auto}
 .footerStrip{display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem;padding:1rem 1.5rem;font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;border-top:1px solid #e5e5e5}
 .footerStrip a{color:var(--stone);transition:color .3s}.footerStrip a:hover{color:var(--black)}
 footer{text-align:center;padding:1.5rem;font-size:.65rem;letter-spacing:.1em;opacity:.6}
+
+/* ---------- STOP OVERLAP ---------- */
+.topbar{position:relative;z-index:200}   /* button stays on top */
+#navDrawer{z-index:90}                  /* drawer slides UNDER */
+#circleMenu{flex-shrink:0;margin-left:auto} /* keeps right alignment */
