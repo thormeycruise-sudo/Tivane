@@ -203,6 +203,100 @@
       line-height: 1.6;
     }
 
+    .price-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 12px;
+    }
+
+    .original-price {
+      text-decoration: line-through;
+      color: var(--gray);
+      margin-right: 12px;
+    }
+
+    .current-price {
+      font-weight: 700;
+      margin-right: 8px;
+    }
+
+    .discount {
+      font-size: 14px;
+      color: var(--gray);
+    }
+
+    /* Currency Toggle */
+    .currency-toggle {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      padding: 12px 24px;
+      background: var(--black);
+      color: var(--ivory);
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      letter-spacing: 1px;
+      transition: .3s;
+    }
+
+    .currency-toggle:hover {
+      background: var(--charcoal);
+    }
+
+    /* Currency Modal */
+    .currency-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .currency-content {
+      background: var(--ivory);
+      padding: 48px;
+      border-radius: 2px;
+    }
+
+    .currency-header {
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    .currency-header h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      letter-spacing: 2px;
+    }
+
+    .currency-buttons {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .currency-btn {
+      flex: 1;
+      padding: 12px;
+      text-align: center;
+      background: var(--black);
+      color: var(--ivory);
+      border: none;
+      cursor: pointer;
+      transition: .3s;
+    }
+
+    .currency-btn:hover {
+      background: var(--charcoal);
+    }
+
     /* Footer */
     footer {
       background: var(--charcoal);
@@ -263,63 +357,81 @@
           <li><a href="men.html">Men</a></li>
           <li><a href="women.html">Women</a></li>
           <li><a href="obli4ous.html">Obli4ous</a></li>
-          <li><a href="#">Collection 02 – Coming Soon</a></li>
+          <li><a href="collection02.html">Collection 02 – Coming Soon</a></li>
         </ul>
-        <li><a href="#">Archive 2024</a></li>
-        <li><a href="#">Story</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="archive2024.html">Archive 2024</a></li>
+        <li><a href="story.html">Story</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
     </div>
   </nav>
 
-  <main>
-    <section class="page-head">
-      <h1>Obli4ous</h1>
-      <p>Structure meets fluidity – now available.</p>
-    </section>
+  <section class="page-head">
+    <h1>Obli4ous</h1>
+    <p>Structure meets fluidity – now available.</p>
+  </section>
 
-    <section class="look-book">
-      <article class="look-item">
-        <img src="https://via.placeholder.com/1600x800" alt="Obli4ous Look 1">
-        <div class="look-caption">
-          <h3>Deconstructed Suit</h3>
-          <p>A classic reimagined – structured shoulders meet asymmetric hemlines.</p>
+  <section class="look-book">
+    <article class="look-item" data-usd-original="1290" data-usd-current="1032">
+      <img src="https://via.placeholder.com/1600x800" alt="Obli4ous Look 1">
+      <div class="look-caption">
+        <h3>Deconstructed Suit</h3>
+        <div class="price-container">
+          <span class="original-price">$1,290</span>
+          <span class="current-price">$1,032</span>
+          <span class="discount">-20%</span>
         </div>
-      </article>
+      </div>
+    </article>
 
-      <article class="look-item">
-        <img src="https://via.placeholder.com/1600x1200" alt="Obli4ous Look 2">
-        <div class="look-caption">
-          <h3>Fluid Pleated Dress</h3>
-          <p>Hand-draped silk with cascading pleats that move with the body.</p>
+    <article class="look-item" data-usd-original="1190" data-usd-current="952">
+      <img src="https://via.placeholder.com/1600x1200" alt="Obli4ous Look 2">
+      <div class="look-caption">
+        <h3>Fluid Pleated Dress</h3>
+        <div class="price-container">
+          <span class="original-price">$1,190</span>
+          <span class="current-price">$952</span>
+          <span class="discount">-20%</span>
         </div>
-      </article>
+      </div>
+    </article>
 
-      <article class="look-item">
-        <img src="https://via.placeholder.com/1600x800" alt="Obli4ous Look 3">
-        <div class="look-caption">
-          <h3>Asymmetric Tuxedo</h3>
-          <p>One shoulder, double lapel – formalwear redefined.</p>
+    <article class="look-item" data-usd-original="1490" data-usd-current="1192">
+      <img src="https://via.placeholder.com/1600x800" alt="Obli4ous Look 3">
+      <div class="look-caption">
+        <h3>Asymmetric Tuxedo</h3>
+        <div class="price-container">
+          <span class="original-price">$1,490</span>
+          <span class="current-price">$1,192</span>
+          <span class="discount">-20%</span>
         </div>
-      </article>
+      </div>
+    </article>
 
-      <article class="look-item">
-        <img src="https://via.placeholder.com/1600x1000" alt="Obli4ous Look 4">
-        <div class="look-caption">
-          <h3>Wool-Cashmere Blend Coat</h3>
-          <p>Oversized yet refined – the perfect layer for transitional weather.</p>
+    <article class="look-item" data-usd-original="890" data-usd-current="712">
+      <img src="https://via.placeholder.com/1600x1000" alt="Obli4ous Look 4">
+      <div class="look-caption">
+        <h3>Wool-Cashmere Blend Coat</h3>
+        <div class="price-container">
+          <span class="original-price">$890</span>
+          <span class="current-price">$712</span>
+          <span class="discount">-20%</span>
         </div>
-      </article>
+      </div>
+    </article>
 
-      <article class="look-item">
-        <img src="https://via.placeholder.com/1600x800" alt="Obli4ous Look 5">
-        <div class="look-caption">
-          <h3>Crystal-Embellished Gloves</h3>
-          <p>Luxury in detail – hand-sewn crystals on kid leather.</p>
+    <article class="look-item" data-usd-original="450" data-usd-current="360">
+      <img src="https://via.placeholder.com/1600x800" alt="Obli4ous Look 5">
+      <div class="look-caption">
+        <h3>Crystal-Embellished Gloves</h3>
+        <div class="price-container">
+          <span class="original-price">$450</span>
+          <span class="current-price">$360</span>
+          <span class="discount">-20%</span>
         </div>
-      </article>
-    </section>
-  </main>
+      </div>
+    </article>
+  </section>
 
   <footer>
     <div class="motto">“Every thread whispers luxury, every cut shouts individuality.”</div>
@@ -329,30 +441,112 @@
     © 2025 Tivane – Maison de Couture
   </footer>
 
+  <button class="currency-toggle" id="currency-toggle">Toggle Currency</button>
+  <div class="currency-modal" id="currency-modal">
+    <div class="currency-content">
+      <div class="currency-header">
+        <h3>Select Currency</h3>
+      </div>
+      <div class="currency-buttons">
+        <button class="currency-btn" id="usd-btn">USD</button>
+        <button class="currency-btn" id="ngn-btn">NGN</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     document.addEventListener('DOMContentLoaded', function() {
         const hamburger = document.getElementById('hamburger');
         const menu = document.getElementById('menu');
         const collectionsToggle = document.getElementById('collections-toggle');
         const subCollections = document.getElementById('sub-collections');
-
-        hamburger.addEventListener('click', function() {
+        const currencyToggle = document.getElementById('currency-toggle');
+        const currencyModal = document.getElementById('currency-modal');
+        const usdBtn = document.getElementById('usd-btn');
+        const ngnBtn = document.getElementById('ngn-btn');
+        const lookItems = document.querySelectorAll('.look-item');
+        
+        // Function to toggle the hamburger menu
+        function toggleHamburger() {
             hamburger.classList.toggle('open');
             menu.classList.toggle('open');
-        });
+        }
 
-        collectionsToggle.addEventListener('click', function() {
+        // Function to toggle the sub-menu
+        function toggleSubMenu() {
             subCollections.classList.toggle('open');
-        });
+        }
 
-        // Reset the menu state when navigating back to the home page
-        window.onpopstate = function() {
-            if (document.location.pathname === '/') {
-                hamburger.classList.remove('open');
-                menu.classList.remove('open');
-                subCollections.classList.remove('open');
-            }
-        };
+        // Function to show currency modal
+        function showCurrencyModal() {
+            currencyModal.style.display = 'flex';
+        }
+
+        // Function to hide currency modal
+        function hideCurrencyModal() {
+            currencyModal.style.display = 'none';
+        }
+
+        // Function to update prices to USD
+        function setCurrencyUSD() {
+            hideCurrencyModal();
+            lookItems.forEach(item => {
+                const originalPrice = item.querySelector('.original-price');
+                const currentPrice = item.querySelector('.current-price');
+                
+                const usdOriginal = item.dataset.usdOriginal;
+                const usdCurrent = item.dataset.usdCurrent;
+                
+                originalPrice.textContent = `$${usdOriginal}`;
+                currentPrice.textContent = `$${usdCurrent}`;
+            });
+        }
+
+        // Function to update prices to NGN
+        function setCurrencyNGN() {
+            hideCurrencyModal();
+            lookItems.forEach(item => {
+                const originalPrice = item.querySelector('.original-price');
+                const currentPrice = item.querySelector('.current-price');
+                
+                const usdOriginal = parseFloat(item.dataset.usdOriginal);
+                const usdCurrent = parseFloat(item.dataset.usdCurrent);
+                
+                const ngnOriginal = (usdOriginal * 450).toFixed(0);
+                const ngnCurrent = (usdCurrent * 450).toFixed(0);
+                
+                originalPrice.textContent = `₦${ngnOriginal}`;
+                currentPrice.textContent = `₦${ngnCurrent}`;
+            });
+        }
+
+        // Event listener for the hamburger button
+        hamburger.addEventListener('click', toggleHamburger);
+
+        // Event listener for the collections toggle
+        collectionsToggle.addEventListener('click', toggleSubMenu);
+
+        // Event listener for the currency toggle
+        currencyToggle.addEventListener('click', showCurrencyModal);
+
+        // Event listener for the USD button
+        usdBtn.addEventListener('click', setCurrencyUSD);
+
+        // Event listener for the NGN button
+        ngnBtn.addEventListener('click', setCurrencyNGN);
+
+        // Reset menu state on page load and navigation
+        function resetMenuState() {
+            hamburger.classList.remove('open');
+            menu.classList.remove('open');
+            subCollections.classList.remove('open');
+        }
+
+        // Reset menu state when the page loads
+        window.addEventListener('load', resetMenuState);
+
+        // Reset menu state when the browser's back/forward buttons are used
+        window.addEventListener('popstate', resetMenuState);
     });
   </script>
 
