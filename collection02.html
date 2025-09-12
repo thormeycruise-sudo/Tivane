@@ -161,14 +161,14 @@
 
     .hero p {
       font-size: 18px;
-      color: var(--ivory);
+      color: var(--gray);
       letter-spacing: 1px;
       margin-bottom: 24px;
     }
 
     .btn {
       display: inline-block;
-      border: 1px solid var(--black);
+      border: 1px solid var(--ivory);
       padding: 14px 40px;
       font-size: 14px;
       letter-spacing: 2px;
@@ -176,8 +176,8 @@
     }
 
     .btn:hover {
-      background: var(--black);
-      color: var(--ivory);
+      background: var(--ivore);
+      color: var(--black);
     }
 
     /* Teaser Content */
@@ -259,6 +259,77 @@
       background: rgba(255, 255, 255, 0.8);
     }
 
+    /* Currency Toggle */
+    .currency-toggle {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      padding: 12px 24px;
+      background: var(--black);
+      color: var(--ivory);
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      letter-spacing: 1px;
+      transition: .3s;
+    }
+
+    .currency-toggle:hover {
+      background: var(--charcoal);
+    }
+
+    /* Currency Modal */
+    .currency-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .currency-content {
+      background: var(--ivory);
+      padding: 48px;
+      border-radius: 2px;
+    }
+
+    .currency-header {
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    .currency-header h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      letter-spacing: 2px;
+    }
+
+    .currency-buttons {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .currency-btn {
+      flex: 1;
+      padding: 12px;
+      text-align: center;
+      background: var(--black);
+      color: var(--ivory);
+      border: none;
+      cursor: pointer;
+      transition: .3s;
+    }
+
+    .currency-btn:hover {
+      background: var(--charcoal);
+    }
+
     /* Footer */
     footer {
       background: var(--charcoal);
@@ -322,8 +393,8 @@
           <li><a href="collection02.html">Collection 02 – Coming Soon</a></li>
         </ul>
         <li><a href="archive2024.html">Archive 2024</a></li>
-        <li><a href="#">Story</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="story.html">Story</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
     </div>
   </nav>
@@ -357,28 +428,78 @@
     © 2025 Tivane – Maison de Couture
   </footer>
 
+  <button class="currency-toggle" id="currency-toggle">Toggle Currency</button>
+  <div class="currency-modal" id="currency-modal">
+    <div class="currency-content">
+      <div class="currency-header">
+        <h3>Select Currency</h3>
+      </div>
+      <div class="currency-buttons">
+        <button class="currency-btn" id="usd-btn">USD</button>
+        <button class="currency-btn" id="ngn-btn">NGN</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     document.addEventListener('DOMContentLoaded', function() {
         const hamburger = document.getElementById('hamburger');
         const menu = document.getElementById('menu');
         const collectionsToggle = document.getElementById('collections-toggle');
         const subCollections = document.getElementById('sub-collections');
-
-        hamburger.addEventListener('click', function() {
+        const currencyToggle = document.getElementById('currency-toggle');
+        const currencyModal = document.getElementById('currency-modal');
+        const usdBtn = document.getElementById('usd-btn');
+        const ngnBtn = document.getElementById('ngn-btn');
+        
+        // Function to toggle the hamburger menu
+        function toggleHamburger() {
             hamburger.classList.toggle('open');
             menu.classList.toggle('open');
-        });
+        }
 
-        collectionsToggle.addEventListener('click', function() {
+        // Function to toggle the sub-menu
+        function toggleSubMenu() {
             subCollections.classList.toggle('open');
-        });
+        }
 
-        // Reset menu state on navigation
-        window.onpopstate = function() {
+        // Function to show currency modal
+        function showCurrencyModal() {
+            currencyModal.style.display = 'flex';
+        }
+
+        // Function to hide currency modal
+        function hideCurrencyModal() {
+            currencyModal.style.display = 'none';
+        }
+
+        // Event listener for the hamburger button
+        hamburger.addEventListener('click', toggleHamburger);
+
+        // Event listener for the collections toggle
+        collectionsToggle.addEventListener('click', toggleSubMenu);
+
+        // Event listener for the currency toggle
+        currencyToggle.addEventListener('click', showCurrencyModal);
+
+        // Event listener for the USD button
+        usdBtn.addEventListener('click', hideCurrencyModal);
+
+        // Event listener for the NGN button
+        ngnBtn.addEventListener('click', hideCurrencyModal);
+
+        // Reset menu state on page load and navigation
+        function resetMenuState() {
             hamburger.classList.remove('open');
             menu.classList.remove('open');
             subCollections.classList.remove('open');
-        };
+        }
+
+        // Reset menu state when the page loads
+        window.addEventListener('load', resetMenuState);
+
+        // Reset menu state when the browser's back/forward buttons are used
+        window.addEventListener('popstate', resetMenuState);
     });
   </script>
 
