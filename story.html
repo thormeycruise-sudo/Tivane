@@ -351,51 +351,55 @@
     </div>
   </div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const hamburger = document.getElementById('hamburger');
-        const menu = document.getElementById('menu');
-        const collectionsToggle = document.getElementById('collections-toggle');
-        const subCollections = document.getElementById('sub-collections');
-        const currencyToggle = document.getElementById('currency-toggle');
-        const currencyModal = document.getElementById('currency-modal');
-        const usdBtn = document.getElementById('usd-btn');
-        const ngnBtn = document.getElementById('ngn-btn');
+ <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const hamburger = document.getElementById('hamburger');
+    const menu = document.getElementById('menu');
+    const collectionsToggle = document.getElementById('collections-toggle');
+    const subCollections = document.getElementById('sub-collections');
+    const currencyToggle = document.getElementById('currency-toggle');
+    const currencyModal = document.getElementById('currency-modal');
+    const usdBtn = document.getElementById('usd-btn');
+    const ngnBtn = document.getElementById('ngn-btn');
 
-        // ----------  HAMBURGER  ----------
-        function toggleHamburger() {
-            hamburger.classList.toggle('open');
-            menu.classList.toggle('open');
-        }
-        hamburger.addEventListener('click', toggleHamburger);
+    // Function to toggle the hamburger menu
+    function toggleHamburger() {
+        hamburger.classList.toggle('open');
+        menu.classList.toggle('open');
+    }
+    hamburger.addEventListener('click', toggleHamburger);
 
-        // ----------  SUB-MENU  ----------
-        function toggleSubMenu() {
-            subCollections.classList.toggle('open');
-        }
-        collectionsToggle.addEventListener('click', toggleSubMenu);
+    // Function to toggle the sub-menu
+    function toggleSubMenu() {
+        subCollections.classList.toggle('open');
+    }
+    collectionsToggle.addEventListener('click', toggleSubMenu);
 
-        // ----------  CURRENCY MODAL  ----------
-        function showCurrencyModal() {
-            currencyModal.style.display = 'flex';
-        }
-        function hideCurrencyModal() {
-            currencyModal.style.display = 'none';
-        }
-        currencyToggle.addEventListener('click', showCurrencyModal);
-        usdBtn.addEventListener('click', hideCurrencyModal);
-        ngnBtn.addEventListener('click', hideCurrencyModal);
+    // Function to show currency modal
+    function showCurrencyModal() {
+        currencyModal.style.display = 'flex';
+    }
+    currencyToggle.addEventListener('click', showCurrencyModal);
 
-        // ----------  RESET ON NAV  ----------
-        function resetMenuState() {
-            hamburger.classList.remove('open');
-            menu.classList.remove('open');
-            subCollections.classList.remove('open');
-        }
-        window.addEventListener('load', resetMenuState);
-        window.addEventListener('popstate', resetMenuState);
-    });
-  </script>
+    // Function to hide currency modal
+    function hideCurrencyModal() {
+        currencyModal.style.display = 'none';
+    }
+    usdBtn.addEventListener('click', hideCurrencyModal);
+    ngnBtn.addEventListener('click', hideCurrencyModal);
+
+    // Function to reset only the sub-menu state
+    function resetSubMenuState() {
+        subCollections.classList.remove('open');
+    }
+
+    // Reset sub-menu state when the page loads
+    window.addEventListener('load', resetSubMenuState);
+
+    // Reset sub-menu state when the browser's back/forward buttons are used
+    window.addEventListener('popstate', resetSubMenuState);
+});
+</script>
 
 </body>
 </html>
