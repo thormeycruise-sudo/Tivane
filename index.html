@@ -330,43 +330,38 @@
   </footer>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const hamburger = document.getElementById('hamburger');
-        const menu = document.getElementById('menu');
-        const collectionsToggle = document.getElementById('collections-toggle');
-        const subCollections = document.getElementById('sub-collections');
+document.addEventListener('DOMContentLoaded', function() {
+    const hamburger = document.getElementById('hamburger');
+    const menu = document.getElementById('menu');
+    const collectionsToggle = document.getElementById('collections-toggle');
+    const subCollections = document.getElementById('sub-collections');
 
-        // Function to toggle the hamburger menu
-        function toggleHamburger() {
-            hamburger.classList.toggle('open');
-            menu.classList.toggle('open');
-        }
+    // Function to toggle the hamburger menu
+    function toggleHamburger() {
+        hamburger.classList.toggle('open');
+        menu.classList.toggle('open');
+    }
+    hamburger.addEventListener('click', toggleHamburger);
 
-        // Function to toggle the sub-menu
-        function toggleSubMenu() {
-            subCollections.classList.toggle('open');
-        }
+    // Function to toggle the sub-menu
+    function toggleSubMenu() {
+        subCollections.classList.toggle('open');
+    }
+    collectionsToggle.addEventListener('click', toggleSubMenu);
 
-        // Event listener for the hamburger button
-        hamburger.addEventListener('click', toggleHamburger);
+    // Function to reset only the sub-menu state
+    function resetSubMenuState() {
+        subCollections.classList.remove('open');
+    }
 
-        // Event listener for the collections toggle
-        collectionsToggle.addEventListener('click', toggleSubMenu);
+    // Reset sub-menu state when the page loads
+    window.addEventListener('load', resetSubMenuState);
 
-        // Reset menu state on page load and navigation
-        function resetMenuState() {
-            hamburger.classList.remove('open');
-            menu.classList.remove('open');
-            subCollections.classList.remove('open');
-        }
+    // Reset sub-menu state when the browser's back/forward buttons are used
+    window.addEventListener('popstate', resetSubMenuState);
+});
+</script>
 
-        // Reset menu state when the page loads
-        window.addEventListener('load', resetMenuState);
-
-        // Reset menu state when the browser's back/forward buttons are used
-        window.addEventListener('popstate', resetMenuState);
-    });
-  </script>
 
 </body>
 </html>
