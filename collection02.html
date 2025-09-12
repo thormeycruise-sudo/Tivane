@@ -156,13 +156,27 @@
       font-family: 'Playfair Display', serif;
       font-size: 48px;
       letter-spacing: 4px;
-      margin-bottom: 16px;
+      margin-bottom: 8px;
     }
 
     .hero p {
       font-size: 18px;
+      color: var(--ivory);
       letter-spacing: 1px;
-      margin-bottom: 40px;
+      margin-bottom: 24px;
+    }
+
+    .btn {
+      display: inline-block;
+      border: 1px solid var(--black);
+      padding: 14px 40px;
+      font-size: 14px;
+      letter-spacing: 2px;
+      transition: .3s;
+    }
+
+    .btn:hover {
+      background: var(--black);
       color: var(--ivory);
     }
 
@@ -270,4 +284,103 @@
     }
 
     footer .contact a:hover {
-     
+      border-bottom: 1px solid var(--ivory);
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        width: 80%;
+        right: -80%;
+      }
+      .center-logo {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="micro-logo">Tivane</div>
+    <div class="center-logo">TIVANE</div>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </header>
+
+  <nav id="menu">
+    <div class="nav-scroll">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li id="collections-toggle">Collections +</li>
+        <ul class="sub-menu" id="sub-collections">
+          <li><a href="men.html">Men</a></li>
+          <li><a href="women.html">Women</a></li>
+          <li><a href="obli4ous.html">Obli4ous</a></li>
+          <li><a href="collection02.html">Collection 02 – Coming Soon</a></li>
+        </ul>
+        <li><a href="archive2024.html">Archive 2024</a></li>
+        <li><a href="#">Story</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <h1>Collection 02</h1>
+    <p>Coming Soon</p>
+    <a href="#" class="btn">Explore Obli4ous</a>
+  </section>
+
+  <section class="teaser">
+    <h2>The Future of Couture</h2>
+    <p>Our upcoming collection pushes the boundaries of traditional couture with innovative materials and unexpected silhouettes.</p>
+    <div class="mailing-list">
+      <h3>Join Our Mailing List</h3>
+      <form id="mailing-list-form">
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <button type="submit" class="btn">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="motto">“Every thread whispers luxury, every cut shouts individuality.”</div>
+    <div class="contact">
+      <a href="mailto:atelier@tivane.com">atelier@tivane.com</a> · +1 212 555 0198
+    </div>
+    © 2025 Tivane – Maison de Couture
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const hamburger = document.getElementById('hamburger');
+        const menu = document.getElementById('menu');
+        const collectionsToggle = document.getElementById('collections-toggle');
+        const subCollections = document.getElementById('sub-collections');
+
+        hamburger.addEventListener('click', function() {
+            hamburger.classList.toggle('open');
+            menu.classList.toggle('open');
+        });
+
+        collectionsToggle.addEventListener('click', function() {
+            subCollections.classList.toggle('open');
+        });
+
+        // Reset menu state on navigation
+        window.onpopstate = function() {
+            hamburger.classList.remove('open');
+            menu.classList.remove('open');
+            subCollections.classList.remove('open');
+        };
+    });
+  </script>
+
+</body>
+</html>
