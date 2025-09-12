@@ -261,6 +261,7 @@
     }
   </style>
 </head>
+
 <body>
   <header>
     <div class="micro-logo">Tivane</div>
@@ -328,32 +329,32 @@
     © 2025 Tivane – Maison de Couture
   </footer>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const hamburger = document.getElementById('hamburger');
-    const menu = document.getElementById('menu');
-    const collectionsToggle = document.getElementById('collections-toggle');
-    const subCollections = document.getElementById('sub-collections');
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const hamburger = document.getElementById('hamburger');
+        const menu = document.getElementById('menu');
+        const collectionsToggle = document.getElementById('collections-toggle');
+        const subCollections = document.getElementById('sub-collections');
 
-    hamburger.addEventListener('click', function() {
-      hamburger.classList.toggle('open');
-      menu.classList.toggle('open');
-   });
+        hamburger.addEventListener('click', function() {
+            hamburger.classList.toggle('open');
+            menu.classList.toggle('open');
+        });
 
-    collectionsToggle.addEventListener('click', function() {
-      subCollections.classList.toggle('open');
-   });
+        collectionsToggle.addEventListener('click', function() {
+            subCollections.classList.toggle('open');
+        });
 
-    // Reset the menu state when navigating back to the home page
-    window.onpopstate = function() {
-      if (document.location.pathname === '/') {
-          hamburger.classList.remove('open');
-          menu.classList.remove('open');
-          subCollections.classList.remove('open');
-      }
-   };
-});
-</script>
+        // Reset the menu state when navigating back to the home page
+        window.onpopstate = function() {
+            if (document.location.pathname === '/') {
+                hamburger.classList.remove('open');
+                menu.classList.remove('open');
+                subCollections.classList.remove('open');
+            }
+        };
+    });
+  </script>
 
 </body>
 </html>
