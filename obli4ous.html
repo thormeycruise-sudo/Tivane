@@ -330,18 +330,22 @@
   </footer>
 
   <script>
+document.addEventListener('DOMContentLoaded', function() {
     const hamburger = document.getElementById('hamburger');
     const menu = document.getElementById('menu');
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('open');
-      menu.classList.toggle('open');
-    });
-
     const collectionsToggle = document.getElementById('collections-toggle');
     const subCollections = document.getElementById('sub-collections');
-    collectionsToggle.addEventListener('click', () => {
+
+    hamburger.addEventListener('click', function() {
+      hamburger.classList.toggle('open');
+      menu.classList.toggle('open');
+   });
+
+    collectionsToggle.addEventListener('click', function() {
       subCollections.classList.toggle('open');
-    });
-  </script>
+   });
+});
+</script>
+
 </body>
 </html>
