@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact – Tivane</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Helvetica+Neue:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ivory: #F5F5F3;
+      --black: #111;
+      --gray: #888;
+      --charcoal: #222;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    body {
+      background: var(--ivory);
+      color: var(--black);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* Navigation */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 72px;
+      background: var(--black);
+      display: flex;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .micro-logo {
+      position: absolute;
+      left: 24px;
+      font-size: 14px;
+      letter-spacing: 1px;
+      color: var(--ivory);
+    }
+
+    .center-logo {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 24px;
+      letter-spacing: 3px;
+      color: var(--ivory);
+    }
+
+    .hamburger {
+      position: absolute;
+      right: 24px;
+      width: 32px;
+      height: 24px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .hamburger span {
+      height: 2px;
+      background: var(--ivory);
+      transition: .3s;
+    }
+
+    .hamburger.open span:nth-child(1) {
+      transform: rotate(45deg) translate(6px, 6px);
+    }
+
+    .hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.open span:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+
+    /* Side Menu */
+    nav {
+      position: fixed;
+      top: 0;
+      right: -50%;
+      width: 50%;
+      height: 100vh;
+      background: var(--black);
+      color: var(--ivory);
+      display: flex;
+      flex-direction: column;
+      transition: right .5s ease;
+      z-index: 999;
+    }
+
+    nav.open {
+      right: 0;
+    }
+
+    .nav-scroll {
+      flex: 1;
+      overflow-y: auto;
+      padding: 96px 48px 48px;
+    }
+
+    nav ul {
+      list-style: none;
+      font-size: 28px;
+      line-height: 2.2;
+      letter-spacing: 1px;
+    }
+
+    nav li {
+      cursor: pointer;
+    }
+
+    nav li a:hover {
+      color: var(--gray);
+    }
+
+    .sub-menu {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .4s ease;
+      padding-left: 24px;
+      font-size: 20px;
+      color: var(--gray);
+    }
+
+    .sub-menu.open {
+      max-height: 40vh;
+      overflow-y: auto;
+    }
+
+    /* Page Header */
+    .page-head {
+      margin-top: 72px;
+      padding: 60px 24px;
+      text-align: center;
+    }
+
+    .page-head h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 48px;
+      letter-spacing: 4px;
+      margin-bottom: 8px;
+    }
+
+    .page-head p {
+      font-size: 16px;
+      color: var(--gray);
+      letter-spacing: 1px;
+    }
+
+    /* Contact Content */
+    .contact-section {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    .contact-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      letter-spacing: 2px;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    .contact-info {
+      background: #fff;
+      border: 1px solid #e6e6e6;
+      padding: 40px;
+      margin-bottom: 60px;
+    }
+
+    .contact-info h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      letter-spacing: 2px;
+      margin-bottom: 24px;
+    }
+
+    .contact-details {
+      margin-bottom: 40px;
+    }
+
+    .contact-details p {
+      margin-bottom: 12px;
+      font-size: 16px;
+    }
+
+    .contact-form h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      letter-spacing: 2px;
+      margin-bottom: 24px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      color: var(--gray);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #e6e6e6;
+      background: var(--ivory);
+      color: var(--black);
+      font-size: 14px;
+    }
+
+    .form-group textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--black);
+      color: var(--ivory);
+      border: none;
+      padding: 14px 32px;
+      font-size: 14px;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: .3s;
+    }
+
+    .btn:hover {
+      background: var(--charcoal);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--charcoal);
+      color: var(--ivory);
+      padding: 48px 24px;
+      text-align: center;
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    footer .motto {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px;
+      font-style: italic;
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+
+    footer .contact a {
+      color: var(--ivory);
+      border-bottom: 1px solid transparent;
+      transition: border-bottom .3s;
+    }
+
+    footer .contact a:hover {
+      border-bottom: 1px solid var(--ivory);
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        width: 80%;
+        right: -80%;
+      }
+      .center-logo {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="micro-logo">Tivane</div>
+    <div class="center-logo">TIVANE</div>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </header>
+
+  <nav id="menu">
+    <div class="nav-scroll">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li id="collections-toggle">Collections +</li>
+        <ul class="sub-menu" id="sub-collections">
+          <li><a href="men.html">Men</a></li>
+          <li><a href="women.html">Women</a></li>
+          <li><a href="obli4ous.html">Obli4ous</a></li>
+          <li><a href="collection02.html">Collection 02 – Coming Soon</a></li>
+        </ul>
+        <li><a href="archive2024.html">Archive 2024</a></li>
+        <li><a href="story.html">Story</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="page-head">
+    <h1>Contact</h1>
+    <p>Get in touch with our atelier</p>
+  </section>
+
+  <main class="contact-section">
+    <div class="contact-info">
+      <h3>Our Atelier</h3>
+      <div class="contact-details">
+        <p><strong>Address:</strong> 12 Rue de la Paix, Paris, France</p>
+        <p><strong>Telephone:</strong> +33 1 23 45 67 89</p>
+        <p><strong>Email:</strong> <a href="mailto:atelier@tivane.com">atelier@tivane.com</a></p>
+        <p><strong>Opening Hours:</strong> Monday to Friday, 10 AM to 6 PM</p>
+      </div>
+
+      <div class="contact-form">
+        <h3>Send Us a Message</h3>
+        <form id="contact-form" onsubmit="event.preventDefault(); sendEmail();">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Your Email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Your Message</label>
+            <textarea id="message" name="message" required></textarea>
+          </div>
+          <button type="submit" class="btn">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="motto">“Every thread whispers luxury, every cut shouts individuality.”</div>
+    <div class="contact">
+      <a href="mailto:atelier@tivane.com">atelier@tivane.com</a> · +1 212 555 0198
+    </div>
+    © 2025 Tivane – Maison de Couture
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const menu = document.getElementById('menu');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      menu.classList.toggle('open');
+    });
+
+    const collectionsToggle = document.getElementById('collections-toggle');
+    const subCollections = document.getElementById('sub-collections');
+    collectionsToggle.addEventListener('click', () => {
+      subCollections.classList.toggle('open');
+    });
+
+    function sendEmail() {
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const subject = document.getElementById('subject').value;
+      const message = document.getElementById('message').value;
+
+      const mailto = `mailto:atelier@tivane.com?subject=${encodeURIComponent(
+        `Contact from ${name}: ${subject}`
+      )}&body=${encodeURIComponent(
+        `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
+      )}`;
+
+      window.location.href = mailto;
+    }
+  </script>
+</body>
+</html>
