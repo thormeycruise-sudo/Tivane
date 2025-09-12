@@ -450,67 +450,77 @@
     </div>
   </div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const hamburger = document.getElementById('hamburger');
-        const menu = document.getElementById('menu');
-        const collectionsToggle = document.getElementById('collections-toggle');
-        const subCollections = document.getElementById('sub-collections');
-        const currencyToggle = document.getElementById('currency-toggle');
-        const currencyModal = document.getElementById('currency-modal');
-        const usdBtn = document.getElementById('usd-btn');
-        const ngnBtn = document.getElementById('ngn-btn');
+ <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const hamburger = document.getElementById('hamburger');
+    const menu = document.getElementById('menu');
+    const collectionsToggle = document.getElementById('collections-toggle');
+    const subCollections = document.getElementById('sub-collections');
+    const currencyToggle = document.getElementById('currency-toggle');
+    const currencyModal = document.getElementById('currency-modal');
+    const usdBtn = document.getElementById('usd-btn');
+    const ngnBtn = document.getElementById('ngn-btn');
 
-        // ----------  HAMBURGER  ----------
-        function toggleHamburger() {
-            hamburger.classList.toggle('open');
-            menu.classList.toggle('open');
-        }
-        hamburger.addEventListener('click', toggleHamburger);
+    // Function to toggle the hamburger menu
+    function toggleHamburger() {
+        hamburger.classList.toggle('open');
+        menu.classList.toggle('open');
+    }
+    hamburger.addEventListener('click', toggleHamburger);
 
-        // ----------  SUB-MENU  ----------
-        function toggleSubMenu() {
-            subCollections.classList.toggle('open');
-        }
-        collectionsToggle.addEventListener('click', toggleSubMenu);
+    // Function to toggle the sub-menu
+    function toggleSubMenu() {
+        subCollections.classList.toggle('open');
+    }
+    collectionsToggle.addEventListener('click', toggleSubMenu);
 
-        // ----------  CURRENCY MODAL  ----------
-        function showCurrencyModal() {
-            currencyModal.style.display = 'flex';
-        }
-        function hideCurrencyModal() {
-            currencyModal.style.display = 'none';
-        }
-        currencyToggle.addEventListener('click', showCurrencyModal);
-        usdBtn.addEventListener('click', hideCurrencyModal);
-        ngnBtn.addEventListener('click', hideCurrencyModal);
+    // Function to show currency modal
+    function showCurrencyModal() {
+        currencyModal.style.display = 'flex';
+    }
+    currencyToggle.addEventListener('click', showCurrencyModal);
 
-        // ----------  RESET ON NAV  ----------
-        function resetMenuState() {
-            hamburger.classList.remove('open');
-            menu.classList.remove('open');
-            subCollections.classList.remove('open');
-        }
-        window.addEventListener('load', resetMenuState);
-        window.addEventListener('popstate', resetMenuState);
+    // Function to hide currency modal
+    function hideCurrencyModal() {
+        currencyModal.style.display = 'none';
+    }
+    usdBtn.addEventListener('click', hideCurrencyModal);
+    ngnBtn.addEventListener('click', hideCurrencyModal);
 
-        // ----------  CONTACT FORM  ----------
-        function sendEmail() {
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
+    // Function to reset only the sub-menu state
+    function resetSubMenuState() {
+        subCollections.classList.remove('open');
+    }
 
-            const mailto = `mailto:atelier@tivane.com?subject=${encodeURIComponent(
-                `Contact from ${name}: ${subject}`
-            )}&body=${encodeURIComponent(
-                `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
-            )}`;
+    // Reset sub-menu state when the page loads
+    window.addEventListener('load', resetSubMenuState);
 
-            window.location.href = mailto;
-        }
+    // Reset sub-menu state when the browser's back/forward buttons are used
+    window.addEventListener('popstate', resetSubMenuState);
+
+    // Function to send email
+    function sendEmail() {
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const subject = document.getElementById('subject').value;
+        const message = document.getElementById('message').value;
+
+        const mailto = `mailto:atelier@tivane.com?subject=${encodeURIComponent(
+            `Contact from ${name}: ${subject}`
+        )}&body=${encodeURIComponent(
+            `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
+        )}`;
+
+        window.location.href = mailto;
+    }
+
+    // Event listener for the contact form submission
+    document.getElementById('contact-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        sendEmail();
     });
-  </script>
+});
+</script>
 
 </body>
 </html>
