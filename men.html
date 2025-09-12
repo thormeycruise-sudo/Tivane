@@ -43,7 +43,23 @@
     .product:hover img{transform:scale(1.08);}
     .info{padding:16px;font-size:14px;letter-spacing:.5px;color:var(--gray);}
     .info .name{display:block;margin-bottom:4px;color:var(--black);}
-    .info .price{font-weight:400;}
+    .info .price-container{display:flex;align-items:center;}
+    .info .original-price{margin-right:8px;text-decoration:line-through;color:var(--gray);}
+    .info .current-price{font-weight:700;}
+    .info .discount{margin-left:8px;font-size:12px;color:var(--gray);}
+
+    /* ----------  CURRENCY TOGGLE  ---------- */
+    .currency-toggle{position:fixed;bottom:24px;right:24px;padding:12px 24px;background:var(--black);color:var(--ivory);border:none;cursor:pointer;font-size:14px;letter-spacing:1px;transition:.3s;}
+    .currency-toggle:hover{background:var(--charcoal);}
+
+    /* ----------  CURRENCY MODAL  ---------- */
+    .currency-modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);z-index:2000;justify-content:center;align-items:center;}
+    .currency-content{background:var(--ivory);padding:48px;border-radius:2px;}
+    .currency-header{margin-bottom:24px;text-align:center;}
+    .currency-header h3{font-family:'Playfair Display',serif;font-size:24px;letter-spacing:2px;}
+    .currency-buttons{display:flex;justify-content:space-between;gap:16px;}
+    .currency-btn{flex:1;padding:12px;text-align:center;background:var(--black);color:var(--ivory);border:none;cursor:pointer;transition:.3s;}
+    .currency-btn:hover{background:var(--charcoal);}
 
     /* ----------  FOOTER  ---------- */
     footer{background:var(--charcoal);color:var(--ivory);padding:48px 24px;text-align:center;font-size:12px;line-height:1.8;}
@@ -51,6 +67,16 @@
     footer .contact a{color:var(--ivory);border-bottom:1px solid transparent;transition:border-bottom .3s;}
     footer .contact a:hover{border-bottom:1px solid var(--ivory);}
     @media(max-width:768px){nav{width:80%;right:-80%;}.center-logo{display:none;}}
+
+    /* Custom styles for responsive product grid */
+    @media (max-width: 768px) {
+      .grid {
+        gap: 8px;
+      }
+      .product {
+        flex-basis: calc(50% - 16px);
+      }
+    }
   </style>
 </head>
 <body>
@@ -86,99 +112,147 @@
 
 <section class="grid">
   <!-- 12 menswear placeholders -->
-  <article class="product">
+  <article class="product" data-usd-original="1890" data-usd-current="1512">
     <img src="https://via.placeholder.com/600x800" alt="">
     <div class="info">
       <span class="name">One-of-One Leather Duster</span>
-      <span class="price">$1 890</span>
+      <div class="price-container">
+        <span class="original-price">$1,890</span>
+        <span class="current-price">$1,512</span>
+        <span class="discount">-20%</span>
+      </div>
     </div>
   </article>
 
-  <article class="product">
+  <article class="product" data-usd-original="1290" data-usd-current="1032">
     <img src="https://via.placeholder.com/600x800" alt="">
     <div class="info">
       <span class="name">Cashmere-Wool Topcoat</span>
-      <span class="price">$1 290</span>
+      <div class="price-container">
+        <span class="original-price">$1,290</span>
+        <span class="current-price">$1,032</span>
+        <span class="discount">-20%</span>
+      </div>
     </div>
   </article>
 
-  <article class="product">
+  <article class="product" data-usd-original="490" data-usd-current="392">
     <img src="https://via.placeholder.com/600x800" alt="">
     <div class="info">
       <span class="name">Liquid-Silk Evening Shirt</span>
-      <span class="price">$490</span>
+      <div class="price-container">
+        <span class="original-price">$490</span>
+        <span class="current-price">$392</span>
+        <span class="discount">-20%</span>
+      </div>
     </div>
   </article>
 
-  <article class="product">
+  <article class="product" data-usd-original="390" data-usd-current="312">
     <img src="https://via.placeholder.com/600x800" alt="">
     <div class="info">
       <span class="name">Pleat-Front Tux Trouser</span>
-      <span class="price">$390</span>
+      <div class="price-container">
+        <span class="original-price">$390</span>
+        <span class="current-price">$312</span>
+        <span class="discount">-20%</span>
+      </div>
     </div>
   </article>
 
-  <article class="product">
+  <article class="product" data-usd-original="1590" data-usd-current="1272">
     <img src="https://via.placeholder.com/600x800" alt="">
     <div class="info">
       <span class="name">Boned Leather Blazer</span>
-      <span class="price">$1 590</span>
+      <div class="price-container">
+        <span class="original-price">$1,590</span>
+        <span class="current-price">$1,272</span>
+        <span class="discount">-20%</span>
+      </div>
     </div>
   </article>
 
-  <article class="product">
+  <article class="product" data-usd-original="290" data-usd-current="232">
     <img src="https://via.placeholder.com/600x800" alt="">
     <div class="info">
       <span class="name">Knit-Wool Roll-Neck</span>
-      <span class="price">$290</span>
+      <div class="price-container">
+        <span class="original-price">$290</span>
+        <span class="current-price">$232</span>
+        <span class="discount">-20%</span>
+      </div>
     </div>
   </article>
 
-  <article class="product">
+  <article class="product" data-usd-original="690" data-usd-current="552">
     <img src="https://via.placeholder.com/600x800" alt="">
     <div class="info">
       <span class="name">Technical Field Jacket</span>
-      <span class="price">$690</span>
+      <div class="price-container">
+        <span class="original-price">$690</span>
+        <span class="current-price">$552</span>
+        <span class="discount">-20%</span>
+      </div>
     </div>
   </article>
 
-  <article class="product">
+  <article class="product" data-usd-original="290" data-usd-current="232">
     <img src="https://via.placeholder.com/600x800" alt="">
     <div class="info">
       <span class="name">Satin-Trim Lounge Pant</span>
-      <span class="price">$290</span>
+      <div class="price-container">
+        <span class="original-price">$290</span>
+        <span class="current-price">$232</span>
+        <span class="discount">-20%</span>
+      </div>
     </div>
   </article>
 
-  <article class="product">
+  <article class="product" data-usd-original="290" data-usd-current="232">
     <img src="https://via.placeholder.com/600x800" alt="">
     <div class="info">
       <span class="name">Oversized Silk Tee</span>
-      <span class="price">$290</span>
+      <div class="price-container">
+        <span class="original-price">$290</span>
+        <span class="current-price">$232</span>
+        <span class="discount">-20%</span>
+      </div>
     </div>
   </article>
 
-  <article class="product">
+  <article class="product" data-usd-original="350" data-usd-current="280">
     <img src="https://via.placeholder.com/600x800" alt="">
     <div class="info">
       <span class="name">Cropped Cargo Denim</span>
-      <span class="price">$350</span>
+      <div class="price-container">
+        <span class="original-price">$350</span>
+        <span class="current-price">$280</span>
+        <span class="discount">-20%</span>
+      </div>
     </div>
   </article>
 
-  <article class="product">
+  <article class="product" data-usd-original="250" data-usd-current="200">
     <img src="https://via.placeholder.com/600x800" alt="">
     <div class="info">
       <span class="name">Harness Leather Belt</span>
-      <span class="price">$250</span>
+      <div class="price-container">
+        <span class="original-price">$250</span>
+        <span class="current-price">$200</span>
+        <span class="discount">-20%</span>
+      </div>
     </div>
   </article>
 
-  <article class="product">
+  <article class="product" data-usd-original="290" data-usd-current="232">
     <img src="https://via.placeholder.com/600x800" alt="">
     <div class="info">
       <span class="name">Metal-Frame Sunglasses</span>
-      <span class="price">$290</span>
+      <div class="price-container">
+        <span class="original-price">$290</span>
+        <span class="current-price">$232</span>
+        <span class="discount">-20%</span>
+      </div>
     </div>
   </article>
 </section>
@@ -191,30 +265,112 @@
   © 2025 Tivane – Maison de Couture
 </footer>
 
+<button class="currency-toggle" id="currency-toggle">Toggle Currency</button>
+<div class="currency-modal" id="currency-modal">
+  <div class="currency-content">
+    <div class="currency-header">
+      <h3>Select Currency</h3>
+    </div>
+    <div class="currency-buttons">
+      <button class="currency-btn" id="usd-btn">USD</button>
+      <button class="currency-btn" id="ngn-btn">NGN</button>
+    </div>
+  </div>
+</div>
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const hamburger = document.getElementById('hamburger');
     const menu = document.getElementById('menu');
     const collectionsToggle = document.getElementById('collections-toggle');
     const subCollections = document.getElementById('sub-collections');
-
-    hamburger.addEventListener('click', function() {
+    const currencyToggle = document.getElementById('currency-toggle');
+    const currencyModal = document.getElementById('currency-modal');
+    const usdBtn = document.getElementById('usd-btn');
+    const ngnBtn = document.getElementById('ngn-btn');
+    const products = document.querySelectorAll('.product');
+    
+    // Function to toggle the hamburger menu
+    function toggleHamburger() {
         hamburger.classList.toggle('open');
         menu.classList.toggle('open');
-    });
+    }
 
-    collectionsToggle.addEventListener('click', function() {
+    // Function to toggle the sub-menu
+    function toggleSubMenu() {
         subCollections.classList.toggle('open');
-    });
+    }
 
-    // Reset the menu state when navigating back to the home page
-    window.onpopstate = function() {
-        if (document.location.pathname === '/') {
-            hamburger.classList.remove('open');
-            menu.classList.remove('open');
-            subCollections.classList.remove('open');
-        }
-    };
+    // Function to show currency modal
+    function showCurrencyModal() {
+        currencyModal.style.display = 'flex';
+    }
+
+    // Function to hide currency modal
+    function hideCurrencyModal() {
+        currencyModal.style.display = 'none';
+    }
+
+    // Function to update prices to USD
+    function setCurrencyUSD() {
+        hideCurrencyModal();
+        products.forEach(product => {
+            const originalPrice = product.querySelector('.original-price');
+            const currentPrice = product.querySelector('.current-price');
+            
+            const usdOriginal = product.dataset.usdOriginal;
+            const usdCurrent = product.dataset.usdCurrent;
+            
+            originalPrice.textContent = `$${usdOriginal}`;
+            currentPrice.textContent = `$${usdCurrent}`;
+        });
+    }
+
+    // Function to update prices to NGN
+    function setCurrencyNGN() {
+        hideCurrencyModal();
+        products.forEach(product => {
+            const originalPrice = product.querySelector('.original-price');
+            const currentPrice = product.querySelector('.current-price');
+            
+            const usdOriginal = parseFloat(product.dataset.usdOriginal);
+            const usdCurrent = parseFloat(product.dataset.usdCurrent);
+            
+            const ngnOriginal = (usdOriginal * 450).toFixed(0);
+            const ngnCurrent = (usdCurrent * 450).toFixed(0);
+            
+            originalPrice.textContent = `₦${ngnOriginal}`;
+            currentPrice.textContent = `₦${ngnCurrent}`;
+        });
+    }
+
+    // Event listener for the hamburger button
+    hamburger.addEventListener('click', toggleHamburger);
+
+    // Event listener for the collections toggle
+    collectionsToggle.addEventListener('click', toggleSubMenu);
+
+    // Event listener for the currency toggle
+    currencyToggle.addEventListener('click', showCurrencyModal);
+
+    // Event listener for the USD button
+    usdBtn.addEventListener('click', setCurrencyUSD);
+
+    // Event listener for the NGN button
+    ngnBtn.addEventListener('click', setCurrencyNGN);
+
+    // Reset menu state on page load and navigation
+    function resetMenuState() {
+        hamburger.classList.remove('open');
+        menu.classList.remove('open');
+        subCollections.classList.remove('open');
+    }
+
+    // Reset menu state when the page loads
+    window.addEventListener('load', resetMenuState);
+
+    // Reset menu state when the browser's back/forward buttons are used
+    window.addEventListener('popstate', resetMenuState);
 });
 </script>
 
