@@ -199,13 +199,22 @@ document.addEventListener('DOMContentLoaded', function() {
     const subCollections = document.getElementById('sub-collections');
 
     hamburger.addEventListener('click', function() {
-      hamburger.classList.toggle('open');
-      menu.classList.toggle('open');
-   });
+        hamburger.classList.toggle('open');
+        menu.classList.toggle('open');
+    });
 
     collectionsToggle.addEventListener('click', function() {
-      subCollections.classList.toggle('open');
-   });
+        subCollections.classList.toggle('open');
+    });
+
+    // Reset the menu state when navigating back to the home page
+    window.onpopstate = function() {
+        if (document.location.pathname === '/') {
+            hamburger.classList.remove('open');
+            menu.classList.remove('open');
+            subCollections.classList.remove('open');
+        }
+    };
 });
 </script>
 
