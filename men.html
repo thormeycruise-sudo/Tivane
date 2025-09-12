@@ -359,18 +359,16 @@ document.addEventListener('DOMContentLoaded', function() {
     // Event listener for the NGN button
     ngnBtn.addEventListener('click', setCurrencyNGN);
 
-    // Reset menu state on page load and navigation
-    function resetMenuState() {
-        hamburger.classList.remove('open');
-        menu.classList.remove('open');
+    // Function to reset only the sub-menu state
+    function resetSubMenuState() {
         subCollections.classList.remove('open');
     }
 
-    // Reset menu state when the page loads
-    window.addEventListener('load', resetMenuState);
+    // Reset sub-menu state when the page loads
+    window.addEventListener('load', resetSubMenuState);
 
-    // Reset menu state when the browser's back/forward buttons are used
-    window.addEventListener('popstate', resetMenuState);
+    // Reset sub-menu state when the browser's back/forward buttons are used
+    window.addEventListener('popstate', resetSubMenuState);
 });
 </script>
 
