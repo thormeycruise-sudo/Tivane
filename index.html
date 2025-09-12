@@ -336,23 +336,35 @@
         const collectionsToggle = document.getElementById('collections-toggle');
         const subCollections = document.getElementById('sub-collections');
 
-        hamburger.addEventListener('click', function() {
+        // Function to toggle the hamburger menu
+        function toggleHamburger() {
             hamburger.classList.toggle('open');
             menu.classList.toggle('open');
-        });
+        }
 
-        collectionsToggle.addEventListener('click', function() {
+        // Function to toggle the sub-menu
+        function toggleSubMenu() {
             subCollections.classList.toggle('open');
-        });
+        }
 
-        // Reset the menu state when navigating back to the home page
-        window.onpopstate = function() {
-            if (document.location.pathname === '/') {
-                hamburger.classList.remove('open');
-                menu.classList.remove('open');
-                subCollections.classList.remove('open');
-            }
-        };
+        // Event listener for the hamburger button
+        hamburger.addEventListener('click', toggleHamburger);
+
+        // Event listener for the collections toggle
+        collectionsToggle.addEventListener('click', toggleSubMenu);
+
+        // Reset menu state on page load and navigation
+        function resetMenuState() {
+            hamburger.classList.remove('open');
+            menu.classList.remove('open');
+            subCollections.classList.remove('open');
+        }
+
+        // Reset menu state when the page loads
+        window.addEventListener('load', resetMenuState);
+
+        // Reset menu state when the browser's back/forward buttons are used
+        window.addEventListener('popstate', resetMenuState);
     });
   </script>
 
