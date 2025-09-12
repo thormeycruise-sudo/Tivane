@@ -454,101 +454,99 @@
     </div>
   </div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const hamburger = document.getElementById('hamburger');
-        const menu = document.getElementById('menu');
-        const collectionsToggle = document.getElementById('collections-toggle');
-        const subCollections = document.getElementById('sub-collections');
-        const currencyToggle = document.getElementById('currency-toggle');
-        const currencyModal = document.getElementById('currency-modal');
-        const usdBtn = document.getElementById('usd-btn');
-        const ngnBtn = document.getElementById('ngn-btn');
-        const lookItems = document.querySelectorAll('.look-item');
-        
-        // Function to toggle the hamburger menu
-        function toggleHamburger() {
-            hamburger.classList.toggle('open');
-            menu.classList.toggle('open');
-        }
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const hamburger = document.getElementById('hamburger');
+    const menu = document.getElementById('menu');
+    const collectionsToggle = document.getElementById('collections-toggle');
+    const subCollections = document.getElementById('sub-collections');
+    const currencyToggle = document.getElementById('currency-toggle');
+    const currencyModal = document.getElementById('currency-modal');
+    const usdBtn = document.getElementById('usd-btn');
+    const ngnBtn = document.getElementById('ngn-btn');
+    const lookItems = document.querySelectorAll('.look-item');
+    
+    // Function to toggle the hamburger menu
+    function toggleHamburger() {
+        hamburger.classList.toggle('open');
+        menu.classList.toggle('open');
+    }
 
-        // Function to toggle the sub-menu
-        function toggleSubMenu() {
-            subCollections.classList.toggle('open');
-        }
+    // Function to toggle the sub-menu
+    function toggleSubMenu() {
+        subCollections.classList.toggle('open');
+    }
 
-        // Function to show currency modal
-        function showCurrencyModal() {
-            currencyModal.style.display = 'flex';
-        }
+    // Function to show currency modal
+    function showCurrencyModal() {
+        currencyModal.style.display = 'flex';
+    }
 
-        // Function to hide currency modal
-        function hideCurrencyModal() {
-            currencyModal.style.display = 'none';
-        }
+    // Function to hide currency modal
+    function hideCurrencyModal() {
+        currencyModal.style.display = 'none';
+    }
 
-        // Function to update prices to USD
-        function setCurrencyUSD() {
-            hideCurrencyModal();
-            lookItems.forEach(item => {
-                const originalPrice = item.querySelector('.original-price');
-                const currentPrice = item.querySelector('.current-price');
-                
-                const usdOriginal = item.dataset.usdOriginal;
-                const usdCurrent = item.dataset.usdCurrent;
-                
-                originalPrice.textContent = `$${usdOriginal}`;
-                currentPrice.textContent = `$${usdCurrent}`;
-            });
-        }
+    // Function to update prices to USD
+    function setCurrencyUSD() {
+        hideCurrencyModal();
+        lookItems.forEach(item => {
+            const originalPrice = item.querySelector('.original-price');
+            const currentPrice = item.querySelector('.current-price');
+            
+            const usdOriginal = item.dataset.usdOriginal;
+            const usdCurrent = item.dataset.usdCurrent;
+            
+            originalPrice.textContent = `$${usdOriginal}`;
+            currentPrice.textContent = `$${usdCurrent}`;
+        });
+    }
 
-        // Function to update prices to NGN
-        function setCurrencyNGN() {
-            hideCurrencyModal();
-            lookItems.forEach(item => {
-                const originalPrice = item.querySelector('.original-price');
-                const currentPrice = item.querySelector('.current-price');
-                
-                const usdOriginal = parseFloat(item.dataset.usdOriginal);
-                const usdCurrent = parseFloat(item.dataset.usdCurrent);
-                
-                const ngnOriginal = (usdOriginal * 450).toFixed(0);
-                const ngnCurrent = (usdCurrent * 450).toFixed(0);
-                
-                originalPrice.textContent = `₦${ngnOriginal}`;
-                currentPrice.textContent = `₦${ngnCurrent}`;
-            });
-        }
+    // Function to update prices to NGN
+    function setCurrencyNGN() {
+        hideCurrencyModal();
+        lookItems.forEach(item => {
+            const originalPrice = item.querySelector('.original-price');
+            const currentPrice = item.querySelector('.current-price');
+            
+            const usdOriginal = parseFloat(item.dataset.usdOriginal);
+            const usdCurrent = parseFloat(item.dataset.usdCurrent);
+            
+            const ngnOriginal = (usdOriginal * 450).toFixed(0);
+            const ngnCurrent = (usdCurrent * 450).toFixed(0);
+            
+            originalPrice.textContent = `₦${ngnOriginal}`;
+            currentPrice.textContent = `₦${ngnCurrent}`;
+        });
+    }
 
-        // Event listener for the hamburger button
-        hamburger.addEventListener('click', toggleHamburger);
+    // Event listener for the hamburger button
+    hamburger.addEventListener('click', toggleHamburger);
 
-        // Event listener for the collections toggle
-        collectionsToggle.addEventListener('click', toggleSubMenu);
+    // Event listener for the collections toggle
+    collectionsToggle.addEventListener('click', toggleSubMenu);
 
-        // Event listener for the currency toggle
-        currencyToggle.addEventListener('click', showCurrencyModal);
+    // Event listener for the currency toggle
+    currencyToggle.addEventListener('click', showCurrencyModal);
 
-        // Event listener for the USD button
-        usdBtn.addEventListener('click', setCurrencyUSD);
+    // Event listener for the USD button
+    usdBtn.addEventListener('click', setCurrencyUSD);
 
-        // Event listener for the NGN button
-        ngnBtn.addEventListener('click', setCurrencyNGN);
+    // Event listener for the NGN button
+    ngnBtn.addEventListener('click', setCurrencyNGN);
 
-        // Reset menu state on page load and navigation
-        function resetMenuState() {
-            hamburger.classList.remove('open');
-            menu.classList.remove('open');
-            subCollections.classList.remove('open');
-        }
+    // Function to reset only the sub-menu state
+    function resetSubMenuState() {
+        subCollections.classList.remove('open');
+    }
 
-        // Reset menu state when the page loads
-        window.addEventListener('load', resetMenuState);
+    // Reset sub-menu state when the page loads
+    window.addEventListener('load', resetSubMenuState);
 
-        // Reset menu state when the browser's back/forward buttons are used
-        window.addEventListener('popstate', resetMenuState);
-    });
-  </script>
+    // Reset sub-menu state when the browser's back/forward buttons are used
+    window.addEventListener('popstate', resetSubMenuState);
+});
+</script>
 
 </body>
 </html>
