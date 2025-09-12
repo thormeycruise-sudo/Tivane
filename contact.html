@@ -368,35 +368,44 @@
   </footer>
 
   <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const hamburger = document.getElementById('hamburger');
-    const menu = document.getElementById('menu');
-    const collectionsToggle = document.getElementById('collections-toggle');
-    const subCollections = document.getElementById('sub-collections');
+    document.addEventListener('DOMContentLoaded', function() {
+        const hamburger = document.getElementById('hamburger');
+        const menu = document.getElementById('menu');
+        const collectionsToggle = document.getElementById('collections-toggle');
+        const subCollections = document.getElementById('sub-collections');
 
-    hamburger.addEventListener('click', function() {
-      hamburger.classList.toggle('open');
-      menu.classList.toggle('open');
-   });
+        hamburger.addEventListener('click', function() {
+            hamburger.classList.toggle('open');
+            menu.classList.toggle('open');
+        });
 
-    collectionsToggle.addEventListener('click', function() {
-      subCollections.classList.toggle('open');
-   });
+        collectionsToggle.addEventListener('click', function() {
+            subCollections.classList.toggle('open');
+        });
 
-    function sendEmail() {
-      const name = document.getElementById('name').value;
-      const email = document.getElementById('email').value;
-      const subject = document.getElementById('subject').value;
-      const message = document.getElementById('message').value;
+        // Reset menu state on navigation
+        window.onpopstate = function() {
+            hamburger.classList.remove('open');
+            menu.classList.remove('open');
+            subCollections.classList.remove('open');
+        };
 
-      const mailto = `mailto:atelier@tivane.com?subject=${encodeURIComponent(
-        `Contact from ${name}: ${subject}`
-      )}&body=${encodeURIComponent(
-        `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
-      )}`;
+        function sendEmail() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
 
-      window.location.href = mailto;
-    }
+            const mailto = `mailto:atelier@tivane.com?subject=${encodeURIComponent(
+                `Contact from ${name}: ${subject}`
+            )}&body=${encodeURIComponent(
+                `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
+            )}`;
+
+            window.location.href = mailto;
+        }
+    });
   </script>
+
 </body>
 </html>
