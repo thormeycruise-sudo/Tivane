@@ -295,21 +295,26 @@ document.addEventListener('DOMContentLoaded', function() {
         hamburger.classList.toggle('open');
         menu.classList.toggle('open');
     }
+    hamburger.addEventListener('click', toggleHamburger);
 
     // Function to toggle the sub-menu
     function toggleSubMenu() {
         subCollections.classList.toggle('open');
     }
+    collectionsToggle.addEventListener('click', toggleSubMenu);
 
     // Function to show currency modal
     function showCurrencyModal() {
         currencyModal.style.display = 'flex';
     }
+    currencyToggle.addEventListener('click', showCurrencyModal);
 
     // Function to hide currency modal
     function hideCurrencyModal() {
         currencyModal.style.display = 'none';
     }
+    usdBtn.addEventListener('click', hideCurrencyModal);
+    ngnBtn.addEventListener('click', hideCurrencyModal);
 
     // Function to update prices to USD
     function setCurrencyUSD() {
@@ -344,35 +349,25 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Event listener for the hamburger button
-    hamburger.addEventListener('click', toggleHamburger);
-
-    // Event listener for the collections toggle
-    collectionsToggle.addEventListener('click', toggleSubMenu);
-
-    // Event listener for the currency toggle
-    currencyToggle.addEventListener('click', showCurrencyModal);
-
     // Event listener for the USD button
     usdBtn.addEventListener('click', setCurrencyUSD);
 
     // Event listener for the NGN button
     ngnBtn.addEventListener('click', setCurrencyNGN);
 
-    // Reset menu state on page load and navigation
-    function resetMenuState() {
-        hamburger.classList.remove('open');
-        menu.classList.remove('open');
+    // Function to reset only the sub-menu state
+    function resetSubMenuState() {
         subCollections.classList.remove('open');
     }
 
-    // Reset menu state when the page loads
-    window.addEventListener('load', resetMenuState);
+    // Reset sub-menu state when the page loads
+    window.addEventListener('load', resetSubMenuState);
 
-    // Reset menu state when the browser's back/forward buttons are used
-    window.addEventListener('popstate', resetMenuState);
+    // Reset sub-menu state when the browser's back/forward buttons are used
+    window.addEventListener('popstate', resetSubMenuState);
 });
 </script>
+
 
 </body>
 </html>
