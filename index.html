@@ -1,419 +1,161 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Tivane — Lemmetell you bout it</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tivane — Home</title>
 
-<!-- Fonts: Didot-like for headings + system sans for UI -->
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
-<style>
-  :root{
-    --ivory:#FFFFF0;
-    --black:#0b0b0b;
-    --gold:#C9A34F;
-    --muted:#7a7a7a;
-    --max-width:1200px;
-  }
-  *{box-sizing:border-box}
-  html,body{height:100%}
-  body{
-    margin:0;
-    font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    background:var(--ivory);
-    color:var(--black);
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
-    line-height:1.45;
-  }
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #FFFFF0;
+      color: #0b0b0b;
+      overflow-x: hidden;
+    }
 
-  /* ===== HEADER (matches your screenshots) ===== */
-  header.site-header{
-    position:sticky;
-    top:0;
-    z-index:1200;
-    background:var(--ivory);
-    padding:22px 28px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    border-bottom:1px solid rgba(0,0,0,0.06);
-  }
-  .nav-left, .nav-center, .nav-right{display:flex;align-items:center}
-  /* hamburger */
-  .hamburger{
-    width:28px;height:20px;display:inline-grid;gap:5px;
-    cursor:pointer;
-  }
-  .hamburger span{
-    display:block;height:2px;background:var(--black);border-radius:2px;transition:transform .35s,opacity .2s;
-  }
-  .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-  .hamburger.open span:nth-child(2){opacity:0}
-  .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: url('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      position: relative;
+      color: white;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      animation: fadeUp 1.6s ease-out;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 8vw, 7rem);
+      margin: 0;
+      letter-spacing: 10px;
+      text-transform: uppercase;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      margin: 20px 0 30px;
+      letter-spacing: 3px;
+    }
+    .hero a {
+      display: inline-block;
+      padding: 12px 30px;
+      border: 1px solid white;
+      color: white;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: 0.3s;
+    }
+    .hero a:hover {
+      background: white;
+      color: black;
+    }
 
-  /* center logo like screenshot */
-  .logo{
-    font-family: "Playfair Display", "Didot", serif;
-    font-size:28px;
-    letter-spacing:8px;
-    text-transform:uppercase;
-    color:var(--black);
-    cursor:pointer;
-  }
+    @keyframes fadeUp {
+      from {opacity: 0; transform: translateY(40px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
 
-  /* cart icon */
-  .cart{
-    width:26px;height:26px;stroke:var(--black);fill:none;stroke-width:1.4;cursor:pointer;
-    transition:stroke .18s;
-  }
-  .cart:hover{stroke:var(--gold)}
+    /* Section Headings */
+    .section-title {
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      margin: 80px 0 40px;
+      letter-spacing: 4px;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 1s ease;
+    }
+    .section-title.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-  /* ===== NAV OVERLAY (full-screen when hamburger opens) ===== */
-  .nav-overlay{
-    position:fixed;
-    inset:0;
-    background:#040404;
-    color:var(--ivory);
-    transform:translateY(-100%);
-    transition:transform .45s cubic-bezier(.2,.9,.2,1);
-    z-index:1500;
-    overflow:auto;
-  }
-  .nav-overlay.show{transform:none}
-
-  .nav-inner{
-    max-width:1000px;margin:60px auto;padding:40px;
-    display:grid;grid-template-columns:1fr 1fr;gap:48px;
-  }
-  .nav-group h4{
-    margin:0 0 18px 0;
-    color:var(--gold);
-    font-family:"Playfair Display",serif;
-    letter-spacing:4px;
-    font-size:1.05rem;
-    text-transform:uppercase;
-  }
-  .nav-group ul{list-style:none;padding:0;margin:0}
-  .nav-group li{padding:10px 0;color:var(--ivory);font-size:1.05rem}
-  .nav-bottom{
-    margin-top:48px;color:rgba(255,255,255,0.65);font-size:.92rem;
-  }
-
-  /* close button (top-right) */
-  .nav-close{
-    position:fixed;right:22px;top:18px;background:transparent;border:none;color:var(--ivory);font-size:28px;
-    cursor:pointer;padding:10px;
-  }
-
-  /* ===== HERO — Dior-inspired (large serif heading) ===== */
-  .hero{
-    min-height:76vh;
-    display:grid;
-    align-items:center;
-    background-image:linear-gradient(rgba(0,0,0,0.15),rgba(0,0,0,0.15)),url('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1600&q=80');
-    background-size:cover;background-position:center;
-    padding:80px 24px;
-  }
-  .hero-inner{max-width:var(--max-width);margin:0 auto;color:var(--ivory);text-align:center}
-  .hero h1{
-    font-family:"Playfair Display",serif;
-    font-size:clamp(4rem,10vw,8rem);
-    margin:0 0 12px;
-    letter-spacing:12px;
-    text-transform:uppercase;
-    text-shadow:0 6px 20px rgba(0,0,0,.5);
-  }
-  .hero p.lead{
-    font-size:1.05rem;margin:0 0 24px;color:rgba(255,255,255,0.92);letter-spacing:2px;
-  }
-  .hero .cta{
-    display:inline-block;padding:12px 36px;border:1px solid rgba(255,255,255,.9);
-    color:var(--ivory);text-decoration:none;text-transform:uppercase;font-size:.95rem;
-    margin:0 8px;transition:background .25s,color .25s;
-  }
-  .hero .cta:hover{background:var(--ivory);color:var(--black)}
-
-  /* ===== EDITORIAL GRID (Zara-inspired minimal grid with big images) ===== */
-  .section{padding:72px 20px}
-  .container{max-width:var(--max-width);margin:0 auto}
-  .grid{
-    display:grid;grid-template-columns:repeat(12,1fr);gap:20px;
-    align-items:stretch;
-  }
-  .card{
-    background:#fff;overflow:hidden;display:flex;flex-direction:column;
-    border:1px solid rgba(0,0,0,0.06);
-  }
-  .card.figure{
-    grid-column:span 7;
-  }
-  .card.small{
-    grid-column:span 5;
-    display:flex;flex-direction:column;
-  }
-  .card img{display:block;width:100%;height:100%;object-fit:cover}
-  .card .meta{padding:18px;background:var(--ivory)}
-  .card .meta h3{
-    margin:0;font-family:"Playfair Display",serif;font-size:1.25rem;letter-spacing:2px;text-transform:uppercase;
-  }
-  .card .meta p{margin:8px 0 0;color:var(--muted);font-size:.95rem}
-
-  /* product strip (small images) */
-  .product-strip{display:flex;gap:16px;overflow:hidden;padding:10px 0}
-  .product{flex:0 0 220px;border:1px solid rgba(0,0,0,0.06);background:#fff}
-  .product img{width:100%;height:300px;object-fit:cover;display:block}
-  .product .info{padding:10px;font-size:.95rem}
-
-  /* ===== FOOTER (matches your screenshot) ===== */
-  footer{padding:56px 24px;background:linear-gradient(180deg,var(--ivory),#faf9f6);border-top:1px solid rgba(0,0,0,.04)}
-  .footer-inner{max-width:var(--max-width);margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
-  .footer-col h5{
-    margin:0 0 14px;color:var(--gold);font-family:"Playfair Display",serif;letter-spacing:4px;text-transform:uppercase;font-size:.95rem;
-  }
-  .footer-col a{display:block;color:var(--black);text-decoration:none;padding:8px 0}
-  .footer-bottom{margin-top:28px;color:rgba(0,0,0,0.6);font-size:.9rem}
-
-  /* responsive */
-  @media (max-width:900px){
-    .card.figure{grid-column:span 12}
-    .card.small{grid-column:span 12}
-    .grid{grid-auto-rows:1fr}
-    .footer-inner{grid-template-columns:repeat(2,1fr)}
-    .nav-inner{grid-template-columns:1fr}
-  }
-  @media (max-width:480px){
-    .hamburger{width:30px}
-    .logo{font-size:22px;letter-spacing:6px}
-    .hero h1{font-size:clamp(2.4rem,12vw,4.5rem)}
-    header.site-header{padding:16px}
-    .footer-inner{grid-template-columns:1fr}
-  }
-</style>
+    /* Editorial Grid */
+    .editorial {
+      padding: 40px 20px 100px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .editorial img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.05);
+      opacity: 0;
+      transition: transform 1.2s ease, opacity 1.2s ease;
+    }
+    .editorial img.show {
+      transform: scale(1);
+      opacity: 1;
+    }
+  </style>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header class="site-header" role="banner">
-    <div class="nav-left">
-      <button id="hamburger" class="hamburger" aria-label="Open menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
+  <!-- Header include -->
+  <div id="header"></div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Tivane</h1>
+      <p>lemmetell you bout it — bridging Nigerian heritage with modern aesthetics</p>
+      <a href="#shop">Shop Now</a>
     </div>
+  </section>
 
-    <div class="nav-center">
-      <div class="logo" aria-label="Tivane home">Tivane</div>
-    </div>
+  <!-- Editorial Grid -->
+  <h2 class="section-title">Editorial Highlights</h2>
+  <section class="editorial">
+    <div><img src="https://images.unsplash.com/photo-1603252110974-4854d5e7c8b4?auto=format&fit=crop&w=800&q=80" alt="Look 1"></div>
+    <div><img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&w=800&q=80" alt="Look 2"></div>
+    <div><img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=800&q=80" alt="Look 3"></div>
+    <div><img src="https://images.unsplash.com/photo-1607345366928-199ea26cfe3e?auto=format&fit=crop&w=800&q=80" alt="Look 4"></div>
+  </section>
 
-    <div class="nav-right">
-      <!-- cart svg -->
-      <svg class="cart" viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M1 1h4l2.5 13h9.5l2-9H6" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"></path>
-        <circle cx="9" cy="20" r="1.4" fill="currentColor"></circle>
-        <circle cx="19" cy="20" r="1.4" fill="currentColor"></circle>
-      </svg>
-    </div>
-  </header>
+  <!-- Footer include -->
+  <div id="footer"></div>
 
-  <!-- NAV OVERLAY -->
-  <nav id="navOverlay" class="nav-overlay" aria-hidden="true">
-    <button class="nav-close" id="navClose" aria-label="Close menu">&times;</button>
-    <div class="nav-inner">
-      <div class="nav-group">
-        <h4>Shop</h4>
-        <ul>
-          <li>New Arrivals</li>
-          <li>Women</li>
-          <li>Men</li>
-          <li>Accessories</li>
-          <li>Sale</li>
-        </ul>
+  <script>
+    // Simple include system
+    function loadComponent(id, file){
+      fetch(file)
+        .then(res => res.text())
+        .then(html => document.getElementById(id).innerHTML = html);
+    }
+    loadComponent("header", "header.html");
+    loadComponent("footer", "footer.html");
 
-        <h4 style="margin-top:28px">About</h4>
-        <ul>
-          <li>Our Story</li>
-          <li>Craftsmanship</li>
-          <li>Sustainability</li>
-          <li>Press</li>
-        </ul>
-      </div>
-
-      <div class="nav-group">
-        <h4>Customer Care</h4>
-        <ul>
-          <li>Contact Us</li>
-          <li>Shipping & Returns</li>
-          <li>Size Guide</li>
-          <li>Care Instructions</li>
-        </ul>
-
-        <h4 style="margin-top:28px">Connect</h4>
-        <ul>
-          <li>Newsletter</li>
-          <li>Stockists</li>
-          <li>Careers</li>
-          <li>Wholesale</li>
-        </ul>
-
-        <div class="nav-bottom">
-          © Tivane — Lemmetell you bout it. Made in Nigeria.
-        </div>
-      </div>
-    </div>
-  </nav>
-
-  <!-- HERO -->
-  <main>
-    <section class="hero" role="region" aria-label="Main hero">
-      <div class="hero-inner">
-        <h1>TIVANE</h1>
-        <p class="lead">lemmetell you bout it — bridging Nigerian heritage and modern aesthetics.</p>
-        <a href="#shop" class="cta">Shop Women</a>
-        <a href="#shop" class="cta">Shop Men</a>
-      </div>
-    </section>
-
-    <!-- EDITORIAL GRID -->
-    <section class="section">
-      <div class="container">
-        <div class="grid">
-          <!-- large editorial image like Dior -->
-          <article class="card figure" aria-hidden="false">
-            <img src="https://images.unsplash.com/photo-1603252110974-4854d5e7c8b4?auto=format&fit=crop&w=1400&q=80" alt="Editorial look — Tivane">
-            <div class="meta">
-              <h3>Week-end in Lagos</h3>
-              <p>Curated capsule inspired by city rhythms and traditional textiles.</p>
-            </div>
-          </article>
-
-          <!-- smaller stacked pieces that feel like Zara's editorial tiling -->
-          <article class="card small" aria-hidden="false">
-            <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&w=900&q=80" alt="Adire details">
-            <div class="meta">
-              <h3>Adire Linen</h3>
-              <p>Hand-dyed linen shirts — lightweight and local.</p>
-            </div>
-          </article>
-
-          <article class="card small" aria-hidden="false">
-            <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=900&q=80" alt="Accessories">
-            <div class="meta">
-              <h3>Ankara Buckets</h3>
-              <p>Caps with a modern silhouette.</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- PRODUCT STRIP -->
-    <section id="shop" class="section" aria-label="Products">
-      <div class="container">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
-          <h2 style="font-family:'Playfair Display',serif;margin:0">Featured</h2>
-          <a href="#" style="text-decoration:none;color:var(--muted);font-size:.95rem">View all</a>
-        </div>
-
-        <div class="product-strip" aria-hidden="false">
-          <div class="product">
-            <img src="https://images.unsplash.com/photo-1607345366928-199ea26cfe3e?auto=format&fit=crop&w=800&q=80" alt="Ìró Slip Dress">
-            <div class="info">Ìró Slip Dress — ₦48,000</div>
-          </div>
-          <div class="product">
-            <img src="https://images.unsplash.com/photo-1562158070-2b6a0f5527d4?auto=format&fit=crop&w=800&q=80" alt="Shirt">
-            <div class="info">Linen Adire Shirt — ₦29,000</div>
-          </div>
-          <div class="product">
-            <img src="https://images.unsplash.com/photo-1603252110974-4854d5e7c8b4?auto=format&fit=crop&w=800&q=80" alt="Shorts">
-            <div class="info">Aso-Öke Shorts — ₦32,000</div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- FOOTER -->
-  <footer role="contentinfo">
-    <div class="footer-inner container">
-      <div class="footer-col">
-        <h5>Shop</h5>
-        <a href="#">New Arrivals</a>
-        <a href="#">Women</a>
-        <a href="#">Men</a>
-        <a href="#">Accessories</a>
-        <a href="#">Sale</a>
-      </div>
-
-      <div class="footer-col">
-        <h5>About</h5>
-        <a href="#">Our Story</a>
-        <a href="#">Craftsmanship</a>
-        <a href="#">Sustainability</a>
-        <a href="#">Press</a>
-      </div>
-
-      <div class="footer-col">
-        <h5>Customer Care</h5>
-        <a href="#">Contact Us</a>
-        <a href="#">Shipping & Returns</a>
-        <a href="#">Size Guide</a>
-        <a href="#">Care Instructions</a>
-      </div>
-
-      <div class="footer-col">
-        <h5>Connect</h5>
-        <a href="#">Newsletter</a>
-        <a href="#">Stockists</a>
-        <a href="#">Careers</a>
-        <a href="#">Wholesale</a>
-      </div>
-    </div>
-
-    <div class="container footer-bottom">
-      <small>© Tivane — Lemmetell you bout it. Built with ❤️ from Nigeria.</small>
-    </div>
-  </footer>
-
-<script>
-  // NAV toggle + accessibility (keyboard escape)
-  const hamburger = document.getElementById('hamburger');
-  const navOverlay = document.getElementById('navOverlay');
-  const navClose = document.getElementById('navClose');
-
-  function openNav(){
-    hamburger.classList.add('open');
-    hamburger.setAttribute('aria-expanded','true');
-    navOverlay.classList.add('show');
-    navOverlay.setAttribute('aria-hidden','false');
-    document.body.style.overflow='hidden';
-    // focus trap naive: focus close button
-    navClose.focus();
-  }
-
-  function closeNav(){
-    hamburger.classList.remove('open');
-    hamburger.setAttribute('aria-expanded','false');
-    navOverlay.classList.remove('show');
-    navOverlay.setAttribute('aria-hidden','true');
-    document.body.style.overflow='';
-    hamburger.focus();
-  }
-
-  hamburger.addEventListener('click', ()=> {
-    const open = hamburger.classList.contains('open');
-    if(open) closeNav(); else openNav();
-  });
-  navClose.addEventListener('click', closeNav);
-  window.addEventListener('keydown', (e)=>{
-    if(e.key === 'Escape' && navOverlay.classList.contains('show')) closeNav();
-  });
-
-  // close nav when clicking outside inner area
-  navOverlay.addEventListener('click', (e) => {
-    if(e.target === navOverlay) closeNav();
-  });
-</script>
+    // Scroll-triggered reveal
+    const revealOnScroll = () => {
+      document.querySelectorAll('.section-title, .editorial img').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+          el.classList.add('show');
+        }
+      });
+    };
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', revealOnScroll);
+  </script>
 </body>
 </html>
