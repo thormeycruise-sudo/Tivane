@@ -7,48 +7,94 @@
     --tiv-ivory:#FFFFF0;
     --tiv-black:#0b0b0b;
     --tiv-gold:#C9A34F;
+    --tiv-muted:#7a7a7a;
   }
+
+  /* container reset */
   .tivane-root *{box-sizing:border-box}
   .tivane-root{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; color:var(--tiv-black); background:transparent}
 
+  /* header */
   header.tivane-site-header{
     position:sticky;
     top:0;
     z-index:1200;
     background:var(--tiv-ivory);
-    padding:22px 28px;
+    padding:18px 26px;
     display:flex;
     align-items:center;
     justify-content:space-between;
     border-bottom:1px solid rgba(0,0,0,0.06);
+    backdrop-filter: blur(4px);
   }
-  .tiv-nav-left, .tiv-nav-center, .tiv-nav-right{display:flex;align-items:center}
+  .tiv-nav-left, .tiv-nav-center, .tiv-nav-right{display:flex;align-items:center;gap:12px}
 
+  /* Stylized hamburger (rounded, morph to X) */
   .tiv-hamburger{
-    width:28px;height:20px;display:inline-grid;gap:5px;background:transparent;border:0;padding:0;
-    cursor:pointer;
+    width:40px;height:30px;display:inline-grid;place-items:center;padding:6px;border-radius:8px;
+    background:transparent;border:0;cursor:pointer;
+    transition:background .18s;
   }
-  .tiv-hamburger span{display:block;height:2px;background:var(--tiv-black);border-radius:2px;transition:transform .35s,opacity .2s}
-  .tiv-hamburger.tiv-open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-  .tiv-hamburger.tiv-open span:nth-child(2){opacity:0}
-  .tiv-hamburger.tiv-open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  .tiv-hamburger:focus{outline:2px solid rgba(0,0,0,0.06)}
+  .tiv-hamburger:hover{background:rgba(0,0,0,0.02)}
+
+  .tiv-hamburger .lines{
+    position:relative;width:22px;height:14px;
+  }
+  .tiv-hamburger .lines span{
+    position:absolute;left:0;right:0;height:3px;background:var(--tiv-black);border-radius:6px;display:block;
+    transform-origin:center;transition:transform .42s cubic-bezier(.2,.9,.2,1), opacity .28s, top .28s, bottom .28s;
+    box-shadow:0 1px 0 rgba(255,255,255,0.02) inset;
+  }
+  .tiv-hamburger .lines span:nth-child(1){top:0;width:100%}
+  .tiv-hamburger .lines span:nth-child(2){top:50%;transform:translateY(-50%);width:85%}
+  .tiv-hamburger .lines span:nth-child(3){bottom:0;width:65%}
+
+  /* open state */
+  .tiv-hamburger.tiv-open .lines span:nth-child(1){transform:translateY(7px) rotate(45deg); width:100%}
+  .tiv-hamburger.tiv-open .lines span:nth-child(2){opacity:0; transform:scaleX(.6)}
+  .tiv-hamburger.tiv-open .lines span:nth-child(3){transform:translateY(-7px) rotate(-45deg); width:100%}
 
   .tiv-logo{
     font-family: "Playfair Display", "Didot", serif;
-    font-size:28px;
+    font-size:26px;
     letter-spacing:8px;
     text-transform:uppercase;
     color:var(--tiv-black);
     cursor:pointer;
+    user-select:none;
   }
 
+  /* Cart button as a link to cart.html */
+  .tiv-cart-wrap{position:relative;display:inline-block}
   .tiv-cart{
-    width:26px;height:26px;stroke:var(--tiv-black);fill:none;stroke-width:1.4;cursor:pointer;background:transparent;border:0;
-    transition:stroke .18s;
+    display:inline-flex;align-items:center;justify-content:center;
+    width:44px;height:44px;border-radius:10px;background:transparent;border:0;cursor:pointer;
+    transition:transform .36s cubic-bezier(.2,.9,.2,1), box-shadow .18s;
   }
-  .tiv-cart:hover{stroke:var(--tiv-gold)}
+  .tiv-cart:focus{outline:2px solid rgba(0,0,0,0.06)}
+  .tiv-cart svg{width:26px;height:26px;stroke:var(--tiv-black);fill:none;stroke-width:1.4;transition:stroke .18s}
+  .tiv-cart:hover svg{stroke:var(--tiv-gold)}
 
-  /* NAV OVERLAY */
+  /* badge */
+  .tiv-cart-badge{
+    position:absolute;right:-6px;top:-6px;min-width:20px;min-height:20px;padding:0 6px;border-radius:999px;
+    background:var(--tiv-black);color:var(--tiv-ivory);font-size:12px;display:flex;align-items:center;justify-content:center;
+    box-shadow:0 6px 18px rgba(12,12,12,0.12);
+    transform-origin:center;transition:transform .28s cubic-bezier(.2,.9,.2,1);
+  }
+
+  /* bounce animation */
+  @keyframes tiv-bounce {
+    0% { transform: translateY(0) scale(1); }
+    25% { transform: translateY(-8px) scale(1.06); }
+    50% { transform: translateY(0) scale(0.98); }
+    75% { transform: translateY(-4px) scale(1.02); }
+    100% { transform: translateY(0) scale(1); }
+  }
+  .tiv-bounce { animation: tiv-bounce .72s cubic-bezier(.2,.9,.2,1); }
+
+  /* nav overlay (keeps same structure & look) */
   nav.tiv-nav-overlay{
     position:fixed;
     inset:0;
@@ -71,33 +117,40 @@
 
   @media (max-width:900px){
     .tiv-nav-inner{grid-template-columns:1fr}
+    .tiv-hamburger{width:36px;height:28px}
   }
 </style>
 
-<div class="tivane-root">
-  <header class="tivane-site-header" role="banner">
+<div class="tivane-root" aria-hidden="false">
+  <header class="tivane-site-header" role="banner" aria-label="Tivane header">
     <div class="tiv-nav-left">
-      <button id="tiv-hamburger" class="tiv-hamburger" aria-label="Open menu" aria-expanded="false">
-        <span></span><span></span><span></span>
+      <button id="tiv-hamburger" class="tiv-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="tiv-navOverlay">
+        <span class="lines" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </span>
       </button>
     </div>
 
     <div class="tiv-nav-center">
-      <div class="tiv-logo" aria-label="Tivane home">Tivane</div>
+      <a href="/" class="tiv-logo" aria-label="Tivane home">Tivane</a>
     </div>
 
     <div class="tiv-nav-right">
-      <button class="tiv-cart" aria-label="View cart" title="Cart">
-        <svg viewBox="0 0 24 24" aria-hidden="true" width="26" height="26">
-          <path d="M1 1h4l2.5 13h9.5l2-9H6" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"></path>
-          <circle cx="9" cy="20" r="1.4" fill="currentColor"></circle>
-          <circle cx="19" cy="20" r="1.4" fill="currentColor"></circle>
-        </svg>
-      </button>
+      <!-- cart is a proper link to cart.html -->
+      <div class="tiv-cart-wrap">
+        <a href="cart.html" class="tiv-cart" id="tiv-cart" aria-label="Open cart (0 items)" title="View cart">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M1 1h4l2.5 13h9.5l2-9H6" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"></path>
+            <circle cx="9" cy="20" r="1.4" fill="currentColor"></circle>
+            <circle cx="19" cy="20" r="1.4" fill="currentColor"></circle>
+          </svg>
+        </a>
+        <div class="tiv-cart-badge" id="tiv-cart-badge" aria-hidden="true">0</div>
+      </div>
     </div>
   </header>
 
-  <nav id="tiv-navOverlay" class="tiv-nav-overlay" aria-hidden="true">
+  <nav id="tiv-navOverlay" class="tiv-nav-overlay" aria-hidden="true" role="navigation" aria-label="Main menu">
     <button class="tiv-nav-close" id="tiv-navClose" aria-label="Close menu">&times;</button>
     <div class="tiv-nav-inner">
       <div class="tiv-nav-group">
@@ -145,12 +198,15 @@
 </div>
 
 <script>
-  // header interaction
   (function(){
     const hamb = document.getElementById('tiv-hamburger');
     const overlay = document.getElementById('tiv-navOverlay');
     const closeBtn = document.getElementById('tiv-navClose');
+    const cartLink = document.getElementById('tiv-cart');
+    const cartBadge = document.getElementById('tiv-cart-badge');
+    let cartCount = 0;
 
+    /* NAV open / close */
     function openNav(){
       hamb.classList.add('tiv-open');
       hamb.setAttribute('aria-expanded','true');
@@ -173,7 +229,7 @@
     window.addEventListener('keydown', (e)=>{ if(e.key === 'Escape' && overlay.classList.contains('tiv-show')) closeNav(); });
     overlay.addEventListener('click', (e)=>{ if(e.target === overlay) closeNav(); });
 
-    // naive focus trap
+    // focus trap naive enhancement
     overlay.addEventListener('keydown', (e)=>{
       if(e.key !== 'Tab') return;
       const focusable = overlay.querySelectorAll('a,button');
@@ -182,5 +238,47 @@
       if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
       else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
     });
+
+    /* CART: bounce + badge update
+       - header listens globally for clicks on elements with .quick-add
+       - you can also dispatch a custom event 'tiv:cart:add' with detail {count:1}
+         to trigger the same effect from other scripts.
+    */
+    function triggerCartBounce(delta = 1){
+      cartCount = Math.max(0, cartCount + delta);
+      cartBadge.textContent = cartCount;
+      cartBadge.setAttribute('aria-hidden','false');
+      cartLink.setAttribute('aria-label', `Open cart (${cartCount} items)`);
+      // force reflow to restart animation if needed
+      cartBadge.classList.remove('tiv-bounce');
+      // small delay to ensure reflow
+      void cartBadge.offsetWidth;
+      cartBadge.classList.add('tiv-bounce');
+      // optional quick shadow on the cart icon itself
+      cartLink.classList.add('tiv-bounce');
+      setTimeout(()=> cartLink.classList.remove('tiv-bounce'), 820);
+    }
+
+    // dispatch by clicking .quick-add anywhere on the page
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest && e.target.closest('.quick-add');
+      if(btn){
+        // you might already be handling add-to-cart in other code;
+        // we provide a visual bounce + count increment here as default behaviour.
+        triggerCartBounce(1);
+      }
+    });
+
+    // allow external scripts to trigger the cart bounce via a CustomEvent
+    document.addEventListener('tiv:cart:add', (e) => {
+      const delta = e?.detail?.count ?? 1;
+      triggerCartBounce(delta);
+    });
+
+    // Initialize badge hidden if zero
+    if(cartCount === 0){
+      cartBadge.setAttribute('aria-hidden','true');
+      cartBadge.style.visibility = 'visible'; // allow CSS transitions
+    }
   })();
 </script>
