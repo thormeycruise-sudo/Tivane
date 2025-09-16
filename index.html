@@ -1,95 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIVANNE - Bridging Nigeria and Modern Fashion</title>
+    <style>
+        /* Global Styles */
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
+        /* Header */
+        header {
+            background-color: #000;
+            color: #fff;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ffd700; /* Gold for Nigerian vibrancy */
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        .nav-links a {
+            color: #fff;
+            font-weight: 500;
+        }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #fff;
+            margin: 3px 0;
+        }
 
+        /* Hero Section */
+        .hero {
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI4MDAiIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iODAwIiBmaWxsPSIjRkZGRkZGIi8+Cjx0ZXh0IHg9IjYwMCIgeT0iNDAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IiMwMDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5OaWdlcmFuIEZhYnJpYyBQYXR0ZXJuPC90ZXh0Pgo8L3N2Zz4K'); /* Placeholder for Nigerian pattern */
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            margin-top: 60px; /* Account for fixed header */
+        }
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
 
-    
-    
-    
-    
+        /* Collections Section */
+        .collections {
+            padding: 4rem 0;
+            background-color: #f9f9f9;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #000;
+        }
+        .collections-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .collection-card {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .collection-card:hover {
+            transform: translateY(-5px);
+        }
+        .collection-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            background-color: #ddd; /* Placeholder */
+        }
+        .collection-card h3 {
+            padding: 1rem;
+            margin: 0;
+            font-size: 1.5rem;
+            color: #ffd700;
+        }
+        .collection-card p {
+            padding: 0 1rem 1rem;
+            margin: 0;
+            color: #666;
+        }
 
+        /* About Section */
+        .about {
+            padding: 4rem 0;
+            text-align: center;
+        }
+        .about h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #000;
+        }
+        .about p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            color: #555;
+        }
 
-    
-        
-            
-TIVANNE
-		            
-		                
-		Shop
-		                
-		About
-		                
-		Customer Care
-		                
-		Connect
-		            
-            
-        
-    
+        /* Footer */
+        footer {
+            background-color: #000;
+            color: #fff;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 1rem 0;
+            padding: 0;
+        }
+        .footer-links li {
+            margin: 0 1rem;
+        }
+        .footer-links a {
+            color: #ffd700;
+        }
 
-    
-        
-            
-Bridging Nigeria and Modern Fashion
-            
-Discover TIVANNE, where vibrant Nigerian heritage meets contemporary style. We weave the rich tapestry of African craftsmanship into timeless pieces that celebrate culture and elegance.
-        
-    
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            .hero-content p {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">TIVANNE</div>
+            <ul class="nav-links">
+                <li><a href="#shop">Shop</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#care">Customer Care</a></li>
+                <li><a href="#connect">Connect</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
 
-    
-        
-            
-Featured Collections
-            
-                
-                    
-                    
-New Arrivals
-                    
-Fresh drops inspired by Lagos streets and global runways.
-                
-                
-                    
-                    
-Weekend in Lagos
-                    
-Casual vibes with bold Nigerian prints for your city escapes.
-                
-                
-                    
-                    
-Sale
-                    
-Exclusive discounts on sustainable, story-driven designs.
-                
-            
-        
-    
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Bridging Nigeria and Modern Fashion</h1>
+            <p>Discover TIVANNE, where vibrant Nigerian heritage meets contemporary style. We weave the rich tapestry of African craftsmanship into timeless pieces that celebrate culture and elegance.</p>
+        </div>
+    </section>
 
-    
-        
-            
-Our Story
-            
-At TIVANNE, we bridge the gap between Nigeria's vibrant cultural legacy and the pulse of modern fashion. From the bustling markets of Lagos to international catwalks, our collections honor artisanal techniques passed down through generations while embracing innovative silhouettes. Sustainability is at our core—using eco-friendly fabrics and supporting local Nigerian artisans to create pieces that empower and inspire.
-        
-    
+    <section id="shop" class="collections">
+        <div class="container">
+            <h2 class="section-title">Featured Collections</h2>
+            <div class="collections-grid">
+                <div class="collection-card">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjI1MCIgdmlld0JveD0iMCAwIDMwMCAyNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIyNTAiIGZpbGw9IiNERERERERIi8+PHRleHQgeD0iMTUwIiB5PSIxMjUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyNCIgZmlsbD0iIzMzMyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPk5ldyBBcnJpdmFsczwvdGV4dD48L3N2Zz4K" alt="New Arrivals">
+                    <h3>New Arrivals</h3>
+                    <p>Fresh drops inspired by Lagos streets and global runways.</p>
+                </div>
+                <div class="collection-card">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjI1MCIgdmlld0JveD0iMCAwIDMwMCAyNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIyNTAiIGZpbGw9IiNERERERERIi8+PHRleHQgeD0iMTUwIiB5PSIxMjUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyNCIgZmlsbD0iIzMzMyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPldlZWtlbmQgSU4gTGFnb3M8L3RleHQ+PC9zdmc+" alt="Weekend in Lagos">
+                    <h3>Weekend in Lagos</h3>
+                    <p>Casual vibes with bold Nigerian prints for your city escapes.</p>
+                </div>
+                <div class="collection-card">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjI1MCIgdmlld0JveD0iMCAwIDMwMCAyNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIyNTAiIGZpbGw9IiNERERERERIi8+PHRleHQgeD0iMTUwIiB5PSIxMjUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyNCIgZmlsbD0iIzMzMyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPlNhbGU8L3RleHQ+PC9zdmc+" alt="Sale">
+                    <h3>Sale</h3>
+                    <p>Exclusive discounts on sustainable, story-driven designs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    
-        
-		            
-		                
-		Contact Us
-		                
-		Shipping & Returns
-		                
-		Newsletter
-		                
-		Stockists
-		            
-            
-© 2025 TIVANNE. All rights reserved. | Privacy Policy
-        
-    
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">Our Story</h2>
+            <p>At TIVANNE, we bridge the gap between Nigeria's vibrant cultural legacy and the pulse of modern fashion. From the bustling markets of Lagos to international catwalks, our collections honor artisanal techniques passed down through generations while embracing innovative silhouettes. Sustainability is at our core—using eco-friendly fabrics and supporting local Nigerian artisans to create pieces that empower and inspire.</p>
+        </div>
+    </section>
 
-    
+    <footer>
+        <div class="container">
+            <ul class="footer-links">
+                <li><a href="#contact">Contact Us</a></li>
+                <li><a href="#shipping">Shipping & Returns</a></li>
+                <li><a href="#newsletter">Newsletter</a></li>
+                <li><a href="#stockists">Stockists</a></li>
+            </ul>
+            <p>&copy; 2025 TIVANNE. All rights reserved. | <a href="#privacy">Privacy Policy</a></p>
+        </div>
+    </footer>
 
-
+    <script>
+        // Simple hamburger menu toggle for mobile
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        hamburger.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+    </script>
+</body>
+</html>
