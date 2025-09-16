@@ -1,59 +1,186 @@
-<!-- HEADER -->
-<header>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@600&family=Inter:wght@300&display=swap" rel="stylesheet">
+<!-- header.html -->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
-  <style>
-    /* HEADER */
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 40px;
-      background: #fff;
-      font-family: 'Inter', sans-serif;
-      border-bottom: 1px solid #eee;
-    }
+<style>
+  :root{
+    --tiv-ivory:#FFFFF0;
+    --tiv-black:#0b0b0b;
+    --tiv-gold:#C9A34F;
+  }
+  .tivane-root *{box-sizing:border-box}
+  .tivane-root{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; color:var(--tiv-black); background:transparent}
 
-    .logo h1 {
-      font-family: 'Cormorant Infant', serif;
-      font-size: 28px;
-      letter-spacing: 2px;
-      margin: 0;
-    }
+  header.tivane-site-header{
+    position:sticky;
+    top:0;
+    z-index:1200;
+    background:var(--tiv-ivory);
+    padding:22px 28px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    border-bottom:1px solid rgba(0,0,0,0.06);
+  }
+  .tiv-nav-left, .tiv-nav-center, .tiv-nav-right{display:flex;align-items:center}
 
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 25px;
-      margin: 0;
-      padding: 0;
-    }
+  .tiv-hamburger{
+    width:28px;height:20px;display:inline-grid;gap:5px;background:transparent;border:0;padding:0;
+    cursor:pointer;
+  }
+  .tiv-hamburger span{display:block;height:2px;background:var(--tiv-black);border-radius:2px;transition:transform .35s,opacity .2s}
+  .tiv-hamburger.tiv-open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .tiv-hamburger.tiv-open span:nth-child(2){opacity:0}
+  .tiv-hamburger.tiv-open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
-    nav ul li a {
-      text-decoration: none;
-      font-size: 14px;
-      color: #333;
-      transition: color 0.3s ease;
-      font-family: 'Inter', sans-serif;
-    }
+  .tiv-logo{
+    font-family: "Playfair Display", "Didot", serif;
+    font-size:28px;
+    letter-spacing:8px;
+    text-transform:uppercase;
+    color:var(--tiv-black);
+    cursor:pointer;
+  }
 
-    nav ul li a:hover {
-      color: #000;
-    }
-  </style>
+  .tiv-cart{
+    width:26px;height:26px;stroke:var(--tiv-black);fill:none;stroke-width:1.4;cursor:pointer;background:transparent;border:0;
+    transition:stroke .18s;
+  }
+  .tiv-cart:hover{stroke:var(--tiv-gold)}
 
-  <div class="header">
-    <div class="logo">
-      <h1>Tivane</h1>
+  /* NAV OVERLAY */
+  nav.tiv-nav-overlay{
+    position:fixed;
+    inset:0;
+    background:#040404;
+    color:var(--tiv-ivory);
+    transform:translateY(-100%);
+    transition:transform .45s cubic-bezier(.2,.9,.2,1);
+    z-index:1500;
+    overflow:auto;
+    -webkit-overflow-scrolling:touch;
+  }
+  nav.tiv-nav-overlay.tiv-show{transform:none}
+
+  .tiv-nav-inner{max-width:1000px;margin:60px auto;padding:40px;display:grid;grid-template-columns:1fr 1fr;gap:48px}
+  .tiv-nav-group h4{margin:0 0 18px 0;color:var(--tiv-gold);font-family:"Playfair Display",serif;letter-spacing:4px;font-size:1.05rem;text-transform:uppercase}
+  .tiv-nav-group ul{list-style:none;padding:0;margin:0}
+  .tiv-nav-group li{padding:10px 0;color:var(--tiv-ivory);font-size:1.05rem}
+  .tiv-nav-bottom{margin-top:48px;color:rgba(255,255,255,0.65);font-size:.92rem}
+  .tiv-nav-close{position:fixed;right:22px;top:18px;background:transparent;border:none;color:var(--tiv-ivory);font-size:28px;cursor:pointer;padding:10px}
+
+  @media (max-width:900px){
+    .tiv-nav-inner{grid-template-columns:1fr}
+  }
+</style>
+
+<div class="tivane-root">
+  <header class="tivane-site-header" role="banner">
+    <div class="tiv-nav-left">
+      <button id="tiv-hamburger" class="tiv-hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-    <nav>
-      <ul>
-        <li><a href="#">Shop</a></li>
-        <li><a href="#">Collections</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+
+    <div class="tiv-nav-center">
+      <div class="tiv-logo" aria-label="Tivane home">Tivane</div>
+    </div>
+
+    <div class="tiv-nav-right">
+      <button class="tiv-cart" aria-label="View cart" title="Cart">
+        <svg viewBox="0 0 24 24" aria-hidden="true" width="26" height="26">
+          <path d="M1 1h4l2.5 13h9.5l2-9H6" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"></path>
+          <circle cx="9" cy="20" r="1.4" fill="currentColor"></circle>
+          <circle cx="19" cy="20" r="1.4" fill="currentColor"></circle>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <nav id="tiv-navOverlay" class="tiv-nav-overlay" aria-hidden="true">
+    <button class="tiv-nav-close" id="tiv-navClose" aria-label="Close menu">&times;</button>
+    <div class="tiv-nav-inner">
+      <div class="tiv-nav-group">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#">New Arrivals</a></li>
+          <li><a href="#">Women</a></li>
+          <li><a href="#">Men</a></li>
+          <li><a href="#">Accessories</a></li>
+          <li><a href="#">Sale</a></li>
+        </ul>
+
+        <h4 style="margin-top:28px">About</h4>
+        <ul>
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">Craftsmanship</a></li>
+          <li><a href="#">Sustainability</a></li>
+          <li><a href="#">Press</a></li>
+        </ul>
+      </div>
+
+      <div class="tiv-nav-group">
+        <h4>Customer Care</h4>
+        <ul>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Shipping & Returns</a></li>
+          <li><a href="#">Size Guide</a></li>
+          <li><a href="#">Care Instructions</a></li>
+        </ul>
+
+        <h4 style="margin-top:28px">Connect</h4>
+        <ul>
+          <li><a href="#">Newsletter</a></li>
+          <li><a href="#">Stockists</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Wholesale</a></li>
+        </ul>
+
+        <div class="tiv-nav-bottom">
+          © Tivane — Lemmetell you bout it. Made in Nigeria.
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<script>
+  // header interaction
+  (function(){
+    const hamb = document.getElementById('tiv-hamburger');
+    const overlay = document.getElementById('tiv-navOverlay');
+    const closeBtn = document.getElementById('tiv-navClose');
+
+    function openNav(){
+      hamb.classList.add('tiv-open');
+      hamb.setAttribute('aria-expanded','true');
+      overlay.classList.add('tiv-show');
+      overlay.setAttribute('aria-hidden','false');
+      document.body.style.overflow='hidden';
+      closeBtn.focus();
+    }
+    function closeNav(){
+      hamb.classList.remove('tiv-open');
+      hamb.setAttribute('aria-expanded','false');
+      overlay.classList.remove('tiv-show');
+      overlay.setAttribute('aria-hidden','true');
+      document.body.style.overflow='';
+      hamb.focus();
+    }
+
+    hamb.addEventListener('click', ()=> { if(hamb.classList.contains('tiv-open')) closeNav(); else openNav(); });
+    closeBtn.addEventListener('click', closeNav);
+    window.addEventListener('keydown', (e)=>{ if(e.key === 'Escape' && overlay.classList.contains('tiv-show')) closeNav(); });
+    overlay.addEventListener('click', (e)=>{ if(e.target === overlay) closeNav(); });
+
+    // naive focus trap
+    overlay.addEventListener('keydown', (e)=>{
+      if(e.key !== 'Tab') return;
+      const focusable = overlay.querySelectorAll('a,button');
+      if(focusable.length === 0) return;
+      const first = focusable[0], last = focusable[focusable.length -1];
+      if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+      else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+    });
+  })();
+</script>
